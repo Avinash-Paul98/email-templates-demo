@@ -105,11 +105,19 @@
         flex-shrink: 0;
       }
 
-      .step-text {
-        color: #444;
-        font-size: 14px;
-        line-height: 1.5;
-      }
+              .step-text {
+          color: #444;
+          font-size: 14px;
+          line-height: 1.5;
+        }
+
+        .step-text code {
+          background: #f0f0f0;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-family: 'Courier New', monospace;
+          font-size: 12px;
+        }
 
       .buttons-container {
         display: flex;
@@ -250,26 +258,37 @@
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-text">
-              <strong>HTML to EJS Conversion:</strong> Convert your static HTML patient consent form into a dynamic EJS template with patient data.
+              <strong>HTML Source:</strong> Your custom HTML layout is saved as <code>form-template.html</code> - you can edit this file to modify the PDF layout.
             </div>
           </div>
           <div class="step">
             <div class="step-number">2</div>
             <div class="step-text">
-              <strong>EJS to PDF Download:</strong> Generate and download a professional PDF version of the patient consent form.
+              <strong>HTML to EJS Conversion:</strong> Click to automatically convert the HTML to EJS with dynamic patient data variables.
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">
+              <strong>PDF Generation:</strong> Open the dynamic EJS form and generate/download PDF with patient data.
             </div>
           </div>
         </div>
 
         <div class="buttons-container">
+          <a href="/form-template" target="_blank" class="btn btn-primary" style="text-decoration: none;">
+            <span class="icon">👁️</span>
+            View HTML Template
+          </a>
+
           <button class="btn btn-primary" id="convertToEJS" onclick="convertToEJS()">
             <span class="icon">🔄</span>
-            Step 1: Convert HTML to EJS
+            Convert HTML to EJS
           </button>
 
           <button class="btn btn-secondary" id="downloadPDF" onclick="downloadPDF()" disabled>
             <span class="icon">📄</span>
-            Step 2: Generate & Download PDF
+            Open EJS & Download PDF
           </button>
         </div>
 
@@ -293,20 +312,20 @@
         }
       }
 
-      function setButtonLoading(buttonId, loading = true) {
-        const button = document.getElementById(buttonId);
-        if (loading) {
-          button.innerHTML = '<span class="loading"></span>Processing...';
-          button.disabled = true;
-        } else {
-          if (buttonId === 'convertToEJS') {
-            button.innerHTML = '<span class="icon">✅</span>Step 1: HTML to EJS (Completed)';
+              function setButtonLoading(buttonId, loading = true) {
+          const button = document.getElementById(buttonId);
+          if (loading) {
+            button.innerHTML = '<span class="loading"></span>Processing...';
+            button.disabled = true;
           } else {
-            button.innerHTML = '<span class="icon">📄</span>Step 2: Generate & Download PDF';
-            button.disabled = false;
+            if (buttonId === 'convertToEJS') {
+              button.innerHTML = '<span class="icon">✅</span>HTML to EJS (Completed)';
+            } else {
+              button.innerHTML = '<span class="icon">📄</span>Open EJS & Download PDF';
+              button.disabled = false;
+            }
           }
         }
-      }
 
       async function convertToEJS() {
         try {
