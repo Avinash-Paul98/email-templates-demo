@@ -1,0 +1,893 @@
+<%
+  // HARDCODED PATIENT DATA - Edit this directly in the template
+  const patient = {
+    fullName: "Ms. Ann Dav david hoston jimmy fidric and hijak of tvk and kajol",
+    dateOfBirth: "22/06/1989",
+    gender: "Femalereerrrr",
+    londonAddress: "4517 Washington dc fh gh gj gjg jg jg gj gj gjg jg gj gjg jg gj gjg Ave. Manchester,\n39495",
+    overseasAddress: "4517 Washingtoreth Ave. Manchester,\n39495",
+    homeTel: "1234567892343234323 233432 243113",
+    workTel: "23356899",
+    mobileNo: "+44 54865656",
+    email: "oliver@gmail.com",
+    occupation: "Software Developer 2432321 sdasdasdcas dasdfasdfas dfas df asdfasdf asdfassfd",
+    howDidYouKnow: "From Website",
+    previousNHSTel: "123456789",
+    previousNHSAddress: "4517 Washington Ave. Manchester,\n39495",
+    insuranceName: "Life Insurance",
+    membershipNumber: "123456789",
+    preAuthNumber: "33567489900",
+    medicalHistory: {
+      pastMedicalHistory: "Yes",
+      pastMedicalHistoryDetails: "I was diagnosed with super eask asdkjdba sddilamo klsjdlasd hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies.",
+      operations: "Yes",
+      operationsDetails: "Appendectomy in 2020, gallbladder removal in 2019, and minor knee surgery in 2017. All procedures were successful with no complications.",
+      otherClinicians: "Yes",
+      otherCliniciansDetails: "Currently seeing Dr. Smith (Cardiologist) for blood pressure monitoring and Dr. Johnson (Endocrinologist) for thyroid management every 6 months.",
+      recentInvestigations: "Yes",
+      recentInvestigationsDetails: "Recent blood tests showed elevated cholesterol levels. MRI scan of knee completed last month. Chest X-ray and ECG performed during pre-operative assessment.",
+      additionalNotes: "Please inform Dr. Sarah Wilson (Family GP) and Dr. Michael Brown (Cardiologist) about any treatments or consultations. Contact details available upon request."
+    },
+    lifestyle: {
+      exercise: "Yes",
+      exerciseDetails: "I go to the gym 3 times per week focusing on cardio and light weights. Also enjoy swimming twice a week and weekend hiking. Following physiotherapy recommendations for knee rehabilitation.",
+      diet: "Mixed Diet",
+      dietDetails: "Following Mediterranean diet as recommended by nutritionist. Reduced salt intake due to hypertension. Avoiding processed foods and limiting red meat to twice per week.",
+      smoking: "Yes, 2 Packets Per Day",
+      smokingDetails: "Started smoking 15 years ago. Have tried to quit multiple times. Currently using nicotine patches and attending smoking cessation support group weekly.",
+      alcohol: "Yes, Occasionally",
+      alcoholDetails: "Social drinking only - approximately 2-3 glasses of wine per week during weekends. No history of alcohol dependency or related issues."
+    },
+    femalePatients: {
+      periodProblems: "Yes",
+      periodProblemsDetails: "Irregular periods for the past 6 months with heavy bleeding. Currently under investigation by gynecologist. Taking iron supplements for mild anemia related to heavy periods.",
+      pregnant: "No",
+      pregnantDetails: "Last cervical smear date: 15 March 2024, Result: Normal. No abnormal cells detected. Next screening due March 2027.",
+      breastProblems: "Yes", 
+      breastProblemsDetails: "Noticed small lump in left breast last month. Ultrasound performed - results showed benign cyst. Regular self-examination being performed monthly.",
+      mammogram: "Yes",
+      mammogramDetails: "Last mammogram: September 2024. Results: Normal breast tissue, no signs of malignancy. Routine screening as per age guidelines. Next due September 2026.",
+      contraception: "Yes",
+      contraceptionDetails: "Using combined oral contraceptive pill for the past 3 years. No side effects experienced. Regular blood pressure monitoring due to family history."
+    },
+    chaperone: "No",
+    signatureName: "Amelia Johnson",
+    signatureDate: "03/06/1015",
+    relationship: "Mother"
+  };
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Tiro+Bangla::wght@400;800&amp;family=Abhaya+Libre:wght@400;800&amp;display=swap"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>Patient Consent Form - Standalone</title>
+    <style>
+      /* ALL STYLES FROM ORIGINAL TEMPLATE */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: DM Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue,
+          Arial, sans-serif !important;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .form-container {
+        max-width: 595px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 28px 20px 56px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Download Button Styles */
+      .download-container {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 2px solid #93763c;
+      }
+
+      .download-btn {
+        background-color: #93763c;
+        color: white;
+        border: none;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+
+      .download-btn:hover {
+        background-color: #7a6233;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Header Styles */
+      .form-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        margin-bottom: 36px;
+      }
+
+      .form-title {
+        font-family: Tiro Bangla, serif !important;
+        color: #93763c;
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 50.033px;
+        font-variant: all-small-caps;
+        margin-top: 36px;
+      }
+
+      .form-logo {
+        max-width: 114px;
+        width: 100%;
+        aspect-ratio: 1.65;
+        object-fit: contain;
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 12px;
+        margin-top: 12px;
+        width: 100%;
+        border-radius: 8px;
+        background-color: #fafaf9;
+      }
+
+      .section-title {
+        margin-bottom: 16px;
+        color: #93763C;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 22px;
+      }
+
+      .section-content {
+        width: 100%;
+      }
+
+      /* Detail Row Styles */
+      .detail-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 12px;
+      }
+
+      .detail-row.multiline {
+        align-items: flex-start;
+      }
+
+      .detail-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .detail-label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        min-width: 240px;
+        width: 280px;
+        color: #9A9A9A;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+      }
+
+      .detail-value {
+        color: #444444;
+        font-size: 12px;
+        line-height: 1.5;
+        flex: 1;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        max-width: 100%;
+      }
+
+      .detail-value.bold {
+        font-weight: 600;
+        color: #0f172a;
+      }
+
+      /* Question Row Styles */
+      .question-row {
+        width: 100%;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed #e5e5e5;
+        margin-bottom: 14px;
+      }
+
+      .question-row:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .question-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+      }
+
+      .question-label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        min-width: 240px;
+        flex: 1;
+        color: #0f172a;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.25;
+      }
+
+      .question-answer {
+        color: #0f172a;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.5;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+
+      .question-answer.flexible {
+        white-space: normal;
+        max-width: 300px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+
+      /* Text Area Styles */
+      .text-area {
+        gap: 10px;
+        padding: 14px 10px;
+        margin-top: 10px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 1.75;
+        background-color: white;
+        border-radius: 6px;
+        color: #52525b;
+      }
+
+      /* Payment Details Styles */
+      .payment-header {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .payment-badge {
+        gap: 10px;
+        padding: 6px 10px;
+        white-space: nowrap;
+        border-radius: 4px;
+        border: 1px solid #93763C;
+        background-color: #fafaf9;
+        color: #0f172a;
+        min-height: 19px;
+        color: #00152B;
+        display: flex;
+        align-items: center;
+        height: 19px;
+        font-size: 9px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 16px;
+      }
+
+      /* Consent Section Styles */
+      .consent-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 16px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 1.33;
+        text-align: justify;
+        text-transform: capitalize;
+        color: #262626;
+      }
+
+      .consent-paragraph {
+        margin-bottom: 20px;
+      }
+
+      .consent-paragraph:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Signature Section Styles */
+      .signature-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        padding: 12px;
+        margin-top: 16px;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        white-space: nowrap;
+        border-radius: 8px;
+        background-color: #fafaf9;
+        color: #0f172a;
+      }
+
+      .signature-label {
+        width: 63px;
+      }
+
+      .signature-box {
+        height: 45px;
+        width: 121px;
+        border: 1px solid #d1d5db;
+        border-radius: 4px;
+        background-color: white;
+      }
+
+      /* Final Details Styles */
+      .final-detail-row {
+        width: 100%;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed #e5e5e5;
+        margin-bottom: 14px;
+      }
+
+      .final-detail-row:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .final-detail-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: flex-start;
+        width: 100%;
+      }
+
+      .final-detail-content.center {
+        align-items: center;
+      }
+
+      .final-detail-label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.25;
+        min-width: 240px;
+        width: 440px;
+      }
+
+      .final-detail-value {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1.5;
+        color: #0f172a;
+      }
+
+      .final-detail-value.nowrap {
+        white-space: nowrap;
+      }
+
+      .additional-question {
+        margin-top: 14px;
+        width: 100%;
+        font-size: 12px;
+        line-height: 1.75;
+      }
+
+      .additional-question-label {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        font-weight: 500;
+        color: #0f172a;
+        margin-bottom: 10px;
+      }
+
+      .additional-question-text {
+        gap: 10px;
+        padding: 14px 10px;
+        background-color: white;
+        border-radius: 6px;
+        color: #52525b;
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background-color: white;
+          padding: 0;
+        }
+        
+        .form-container {
+          box-shadow: none;
+          max-width: none;
+        }
+
+        .download-container {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Download Button -->
+    <div class="download-container">
+      <div style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #93763c; font-size: 14px;">
+        PDF Options
+      </div>
+      <button class="download-btn" onclick="downloadPDF()">
+        📄 Download PDF
+      </button>
+    </div>
+
+    <div class="form-container" id="consent-form">
+      <!-- Form Header -->
+      <header class="form-header">
+        <div>
+          <h1 class="form-title">Patient Consent Form</h1>
+          <div style="color: #93763c; font-size: 10px; margin-top: 5px; opacity: 0.7;">
+            Standalone Version - <%= new Date().toLocaleString() %>
+          </div>
+        </div>
+        <img src="leh-logo.png" 
+             alt="Medical facility logo" class="form-logo" />
+      </header>
+
+      <div class="form-sections">
+        <!-- Patient Details Section -->
+        <section class="section">
+          <h2 class="section-title">Patient Details</h2>
+          <div class="section-content">
+            <div class="detail-row">
+              <div class="detail-label">Full Name</div>
+              <div class="detail-value"><%= patient.fullName %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Date Of Birth</div>
+              <div class="detail-value"><%= patient.dateOfBirth %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Gender</div>
+              <div class="detail-value"><%= patient.gender %></div>
+            </div>
+            <div class="detail-row multiline">
+              <div class="detail-label">London Address</div>
+              <div class="detail-value"><%- patient.londonAddress.replace(/\n/g, '<br>') %></div>
+            </div>
+            <div class="detail-row multiline">
+              <div class="detail-label">Overseas or Other UK Permanent Address<br>(if different from above)</div>
+              <div class="detail-value"><%- patient.overseasAddress.replace(/\n/g, '<br>') %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Home Tel</div>
+              <div class="detail-value"><%= patient.homeTel %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Work Tel</div>
+              <div class="detail-value"><%= patient.workTel %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Mobile No</div>
+              <div class="detail-value"><%= patient.mobileNo %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Email</div>
+              <div class="detail-value"><%= patient.email %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Occupation</div>
+              <div class="detail-value"><%= patient.occupation %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">How did you know about the practice?</div>
+              <div class="detail-value"><%= patient.howDidYouKnow %></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Previous NHS Section -->
+        <section class="section">
+          <h2 class="section-title">Previous NHS</h2>
+          <div class="section-content">
+            <div class="detail-row">
+              <div class="detail-label">Tel</div>
+              <div class="detail-value"><%= patient.previousNHSTel %></div>
+            </div>
+            <div class="detail-row multiline">
+              <div class="detail-label">Address</div>
+              <div class="detail-value"><%- patient.previousNHSAddress.replace(/\n/g, '<br>') %></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Payment Details Section -->
+        <section class="section">
+          <div class="payment-header">
+            <h2 class="section-title">Payment Details</h2>
+            <div class="payment-badge">Insured</div>
+          </div>
+          <div class="section-content">
+            <div class="detail-row">
+              <div class="detail-label">Insurance Name</div>
+              <div class="detail-value"><%= patient.insuranceName %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Membership Number</div>
+              <div class="detail-value"><%= patient.membershipNumber %></div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Pre-authorization/Claim No</div>
+              <div class="detail-value"><%= patient.preAuthNumber %></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Past Medical History Section -->
+        <section class="section">
+          <h2 class="section-title">Past Medical History</h2>
+          <div class="section-content">
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Do you have any significant past medical history?</div>
+                <div class="question-answer"><%= patient.medicalHistory.pastMedicalHistory %></div>
+              </div>
+              <% if (patient.medicalHistory.pastMedicalHistoryDetails) { %>
+              <div class="text-area">
+                <%= patient.medicalHistory.pastMedicalHistoryDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Have you had any operations or been admitted to hospital?</div>
+                <div class="question-answer"><%= patient.medicalHistory.operations %></div>
+              </div>
+              <% if (patient.medicalHistory.operationsDetails) { %>
+              <div class="text-area">
+                <%= patient.medicalHistory.operationsDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Are there any other clinicians involved in your care?</div>
+                <div class="question-answer"><%= patient.medicalHistory.otherClinicians %></div>
+              </div>
+              <% if (patient.medicalHistory.otherCliniciansDetails) { %>
+              <div class="text-area">
+                <%= patient.medicalHistory.otherCliniciansDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Have you had any recent investigations? (e.g. blood tests, scans)</div>
+                <div class="question-answer"><%= patient.medicalHistory.recentInvestigations %></div>
+              </div>
+              <% if (patient.medicalHistory.recentInvestigationsDetails) { %>
+              <div class="text-area">
+                <%= patient.medicalHistory.recentInvestigationsDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="additional-question">
+              <div class="additional-question-label">
+                Please let us know if you would like any other doctor/consultant notified of this and/or any future<br>
+                <span style="line-height: 16px">consultations</span>
+              </div>
+              <div class="additional-question-text">
+                <%= patient.medicalHistory.additionalNotes %>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Life Style Section -->
+        <section class="section">
+          <h2 class="section-title">Life Style</h2>
+          <div class="section-content">
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Do you exercise?</div>
+                <div class="question-answer"><%= patient.lifestyle.exercise %></div>
+              </div>
+              <% if (patient.lifestyle.exerciseDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.exerciseDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Diet</div>
+                <div class="question-answer flexible"><%= patient.lifestyle.diet %></div>
+              </div>
+              <% if (patient.lifestyle.dietDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.dietDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Do You Smoke?</div>
+                <div class="question-answer flexible"><%= patient.lifestyle.smoking %></div>
+              </div>
+              <% if (patient.lifestyle.smokingDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.smokingDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Do you drink alcohol?</div>
+                <div class="question-answer"><%= patient.lifestyle.alcohol %></div>
+              </div>
+              <% if (patient.lifestyle.alcoholDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.alcoholDetails %>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </section>
+
+        <!-- For Female Patients Section -->
+        <section class="section">
+          <h2 class="section-title">For Female Patients</h2>
+          <div class="section-content">
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Do you have any problems with your periods?</div>
+                <div class="question-answer"><%= patient.femalePatients.periodProblems %></div>
+              </div>
+              <% if (patient.femalePatients.periodProblemsDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.periodProblemsDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Could you be pregnant?</div>
+                <div class="question-answer"><%= patient.femalePatients.pregnant %></div>
+              </div>
+              <% if (patient.femalePatients.pregnantDetails) { %>
+              <div class="text-area" style="line-height: 1.25;">
+                <%= patient.femalePatients.pregnantDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Any breast problems, for example lumps?</div>
+                <div class="question-answer"><%= patient.femalePatients.breastProblems %></div>
+              </div>
+              <% if (patient.femalePatients.breastProblemsDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.breastProblemsDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Have you had a mammogram (inc. date)?</div>
+                <div class="question-answer"><%= patient.femalePatients.mammogram %></div>
+              </div>
+              <% if (patient.femalePatients.mammogramDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.mammogramDetails %>
+              </div>
+              <% } %>
+            </div>
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Are you require / use contraception?</div>
+                <div class="question-answer"><%= patient.femalePatients.contraception %></div>
+              </div>
+              <% if (patient.femalePatients.contraceptionDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.contraceptionDetails %>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chaperone Section -->
+        <section class="section">
+          <div class="section-content">
+            <div class="question-row">
+              <div class="question-content">
+                <div class="question-label">Do you require a chaperone for this consultation?</div>
+                <div class="question-answer"><%= patient.chaperone %></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Consent Section -->
+        <section class="section">
+          <h2 class="section-title">
+            A<span style="text-transform: lowercase;">GREEMENT, </span>
+            <span style="text-transform: uppercase;">D</span>
+            <span style="text-transform: lowercase;">ECLARATION </span>
+            <span style="text-transform: capitalize;">A</span>
+            <span style="text-transform: lowercase;">ND </span>
+            <span style="text-transform: capitalize;">C</span>
+            <span style="text-transform: lowercase;">ONSENT</span>
+          </h2>
+          <div class="consent-text">
+            <p class="consent-paragraph">
+              I confirm that I have read, understood, and accept the terms and conditions outlined above. I understand that I am personally responsible for any costs associated with my procedure if these costs are not covered by medical insurance, insurer or other third party such as a guarantor. I undertake to settle all personal expenses, cost of treatment at the time of my departure or upon request. I give permission to LEH or any other healthcare professional involved in my care, to access health information about me that is relevant to my treatment, which may be held by LEH, other health professionals or health organisations.
+            </p>
+            <p class="consent-paragraph">
+              I also confirm that the information I have provided in this registration form is a true reflection of my current health and past medical history.
+            </p>
+          </div>
+        </section>
+
+        <!-- Signature Section -->
+        <div class="signature-section">
+          <label class="signature-label">Signature</label>
+          <div class="signature-box"></div>
+        </div>
+
+        <!-- Final Details Section -->
+        <section class="section">
+          <div class="section-content">
+            <div class="final-detail-row">
+              <div class="final-detail-content center">
+                <div class="final-detail-label">
+                  <div>Name</div>
+                </div>
+                <div class="final-detail-value"><%= patient.signatureName %></div>
+              </div>
+            </div>
+            <div class="final-detail-row">
+              <div class="final-detail-content center">
+                <div class="final-detail-label">
+                  <div>Date</div>
+                </div>
+                <div class="final-detail-value nowrap"><%= patient.signatureDate %></div>
+              </div>
+            </div>
+            <div class="final-detail-row">
+              <div class="final-detail-content">
+                <div class="final-detail-label">
+                  <div>If you are not the patient, please state relationship to the patient</div>
+                </div>
+                <div class="final-detail-value"><%= patient.relationship %></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Simple PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <script>
+      async function downloadPDF() {
+        try {
+          const downloadBtn = document.querySelector('.download-btn');
+          downloadBtn.innerHTML = '⏳ Generating PDF...';
+          downloadBtn.disabled = true;
+
+          // Hide download button
+          const downloadContainer = document.querySelector('.download-container');
+          downloadContainer.style.display = 'none';
+
+          // Generate PDF
+          const { jsPDF } = window.jspdf;
+          const pdf = new jsPDF('p', 'mm', 'a4');
+
+          const element = document.getElementById('consent-form');
+          const canvas = await window.html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            x: 0,
+            y: 0,
+            scrollX: 0,
+            scrollY: 0
+          });
+
+          const imgData = canvas.toDataURL('image/png');
+          
+          // Use full page dimensions without margins
+          const pageWidth = 210; // A4 width in mm
+          const pageHeight = 297; // A4 height in mm
+          const imgWidth = pageWidth;
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
+          let heightLeft = imgHeight;
+          let position = 0;
+
+          // Add image without any margins (0, 0 positioning)
+          pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+
+          while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+          }
+
+          const currentDate = new Date().toISOString().split('T')[0];
+          const filename = `Patient_Consent_Standalone_${currentDate}.pdf`;
+          pdf.save(filename);
+
+          alert(`✅ PDF downloaded: ${filename}`);
+
+        } catch (error) {
+          alert('Error generating PDF: ' + error.message);
+        } finally {
+          // Restore UI
+          const downloadContainer = document.querySelector('.download-container');
+          downloadContainer.style.display = 'block';
+          
+          const downloadBtn = document.querySelector('.download-btn');
+          downloadBtn.innerHTML = '📄 Download PDF';
+          downloadBtn.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html> 

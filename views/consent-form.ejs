@@ -28,7 +28,7 @@
         max-width: 595px;
         margin: 0 auto;
         background-color: white;
-        padding: 28px 20px 56px;
+        padding: 10px 20px 28px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         overflow: hidden;
         position: relative;
@@ -37,11 +37,11 @@
       /* Download Button Styles */
       .download-container {
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: 10px;
+        right: 10px;
         z-index: 1000;
         background: rgba(255, 255, 255, 0.95);
-        padding: 15px;
+        padding: 5px;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         border: 2px solid #93763c;
@@ -126,7 +126,7 @@
 
       /* Section Styles */
       .section {
-        padding: 12px;
+        padding: 12px 8px;
         margin-top: 12px;
         width: 100%;
         border-radius: 8px;
@@ -134,11 +134,11 @@
       }
 
       .section-title {
-        margin-bottom: 16px;
+        margin-bottom: 8px;
         color: #93763C;
         font-size: 12px;
         font-weight: 600;
-        line-height: 22px;
+        line-height: 15px;
       }
 
       .section-content {
@@ -149,10 +149,10 @@
       .detail-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
         align-items: center;
         width: 100%;
-        margin-bottom: 12px;
+        margin-bottom: 5px;
       }
 
       .detail-row.multiline {
@@ -161,6 +161,34 @@
 
       .detail-row:last-child {
         margin-bottom: 0;
+      }
+
+      .detail-row.two-column {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .detail-col {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .detail-col .detail-label {
+        min-width: auto;
+        width: auto;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+
+      .detail-col .detail-value {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        flex: 1;
       }
 
       .detail-label {
@@ -173,13 +201,13 @@
         font-size: 12px;
         font-style: normal;
         font-weight: 400;
-        line-height: 22px;
+        line-height: 12px;
       }
 
       .detail-value {
         color: #444444;
         font-size: 12px;
-        line-height: 1.5;
+        line-height: 1.1;
         flex: 1;
         word-wrap: break-word;
         overflow-wrap: break-word;
@@ -268,7 +296,7 @@
       /* Payment Details Styles */
       .payment-header {
         display: flex;
-        gap: 8px;
+        gap: 3px;
         align-items: center;
       }
 
@@ -284,12 +312,12 @@
         color: #00152B;
         display: flex;
         align-items: center;
-        height: 19px;
+        height: 16px;
         font-size: 9px;
         font-style: normal;
         font-weight: 500;
-        line-height: 22px;
-        margin-bottom: 16px;
+        line-height: 20px;
+        margin-bottom: 12px;
       }
 
       /* Consent Section Styles */
@@ -438,7 +466,7 @@
       .pdf-optimized .detail-row,
       .pdf-optimized .question-row,
       .pdf-optimized .final-detail-row {
-        margin-bottom: 12px !important;
+        margin-bottom: 6px !important;
         padding-bottom: 12px !important;
       }
 
@@ -448,11 +476,11 @@
       }
 
       .pdf-optimized .section-title {
-        margin-bottom: 16px !important;
+        margin-bottom: 8px !important;
         color: #93763C !important;
         font-size: 12px !important;
         font-weight: 600 !important;
-        line-height: 22px !important;
+        line-height: 16px !important;
       }
 
       .pdf-optimized .text-area {
@@ -481,7 +509,8 @@
       }
 
       .pdf-optimized .form-header {
-        margin-bottom: 36px !important;
+        margin-bottom: 24px !important;
+        margin-top: 0 !important;
       }
 
       /* Preserve detail value styling */
@@ -489,7 +518,7 @@
       .pdf-optimized .question-answer {
         color: #444444 !important;
         font-size: 12px !important;
-        line-height: 1.5 !important;
+        line-height: 1.2 !important;
       }
 
       .pdf-optimized .question-answer {
@@ -501,7 +530,7 @@
       .pdf-optimized .detail-label {
         color: #9A9A9A !important;
         font-size: 12px !important;
-        line-height: 22px !important;
+        line-height: 14px !important;
         min-width: 240px !important;
         width: 280px !important;
       }
@@ -514,11 +543,39 @@
         min-width: 240px !important;
       }
 
+      /* Two-column layout styles for PDF */
+      .pdf-optimized .detail-row.two-column {
+        display: flex !important;
+        gap: 12px !important;
+        width: 100% !important;
+      }
+
+      .pdf-optimized .detail-col {
+        display: flex !important;
+        flex-direction: row !important;
+        flex: 1 !important;
+        gap: 8px !important;
+        align-items: center !important;
+      }
+
+      .pdf-optimized .detail-col .detail-label {
+        min-width: auto !important;
+        width: auto !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+      }
+
+      .pdf-optimized .detail-col .detail-value {
+        flex: 1 !important;
+      }
+
       /* Enhanced Print and PDF specific styles - preserve original design */
         @media print {
           * {
             -webkit-print-color-adjust: exact !important;
-            color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            box-sizing: border-box !important;
           }
           
           body {
@@ -527,11 +584,16 @@
             margin: 0 !important;
             font-family: DM Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif !important;
           }
+
+          @page {
+            margin: 15mm 20mm 20mm 20mm !important;
+            size: A4 !important;
+          }
           
           .form-container {
             box-shadow: none !important;
             max-width: none !important;
-            padding: 28px 20px 56px !important;
+            padding: 15px 20px 40px !important;
             margin: 0 !important;
             background: white !important;
           }
@@ -544,8 +606,8 @@
           .section {
             page-break-inside: avoid !important;
             break-inside: avoid !important;
-            padding: 12px !important;
-            margin-top: 12px !important;
+            padding: 12px 8px !important;
+            margin-top: 5px !important;
             border-radius: 8px !important;
             background-color: #fafaf9 !important;
           }
@@ -554,7 +616,7 @@
           .detail-row, .question-row, .final-detail-row {
             page-break-inside: avoid !important;
             break-inside: avoid !important;
-            margin-bottom: 12px !important;
+            margin-bottom: 6px !important;
             padding-bottom: 12px !important;
           }
 
@@ -590,14 +652,15 @@
           .consent-paragraph {
             page-break-inside: avoid !important;
             break-inside: avoid !important;
-            margin-bottom: 20px !important;
+            margin-bottom: 18px !important;
           }
 
           /* Preserve header styling */
           .form-header {
             page-break-after: avoid !important;
             break-after: avoid !important;
-            margin-bottom: 36px !important;
+            margin-bottom: 18px !important;
+            margin-top: 0 !important;
           }
 
           /* Preserve signature styling */
@@ -614,18 +677,18 @@
           .section-title {
             page-break-after: avoid !important;
             break-after: avoid !important;
-            margin-bottom: 16px !important;
+            margin-bottom: 8px !important;
             color: #93763C !important;
             font-size: 12px !important;
             font-weight: 600 !important;
-            line-height: 22px !important;
+            line-height: 16px !important;
           }
 
           /* Preserve label and value styling */
           .detail-label {
             color: #9A9A9A !important;
             font-size: 12px !important;
-            line-height: 22px !important;
+            line-height: 14px !important;
             min-width: 240px !important;
             width: 280px !important;
           }
@@ -633,7 +696,7 @@
           .detail-value {
             color: #444444 !important;
             font-size: 12px !important;
-            line-height: 1.5 !important;
+            line-height: 1.2 !important;
           }
 
           .question-label {
@@ -656,6 +719,46 @@
             word-break: break-word !important;
             overflow-wrap: break-word !important;
             hyphens: auto !important;
+          }
+
+          /* Prevent pixel breaking and improve rendering */
+          * {
+            transform: translateZ(0) !important;
+            backface-visibility: hidden !important;
+          }
+
+          /* Force integer positioning */
+          .section, .detail-row, .question-row {
+            transform: translate3d(0, 0, 0) !important;
+          }
+
+          /* Two-column layout for print */
+          .detail-row.two-column {
+            display: flex !important;
+            gap: 12px !important;
+            width: 100% !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+
+          .detail-col {
+            display: flex !important;
+            flex-direction: row !important;
+            flex: 1 !important;
+            gap: 8px !important;
+            align-items: center !important;
+          }
+
+          .detail-col .detail-label {
+            min-width: auto !important;
+            width: auto !important;
+            margin-bottom: 0 !important;
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+          }
+
+          .detail-col .detail-value {
+            flex: 1 !important;
           }
         }
 
@@ -686,6 +789,9 @@
         </div>
         <button class="download-btn" onclick="downloadPDF()">
           📄 Download PDF (Sections)
+        </button>
+        <button class="download-btn" onclick="downloadSimplePDF()" style="margin-top: 5px; background-color: #2563eb;">
+          🖨️ Download PDF (Print-based)
         </button>
       </div>
 
@@ -785,13 +891,15 @@
               <div class="detail-label">Insurance Name</div>
               <div class="detail-value"><%= patient.insuranceName %></div>
             </div>
-            <div class="detail-row">
-              <div class="detail-label">Membership Number</div>
-              <div class="detail-value"><%= patient.membershipNumber %></div>
-            </div>
-            <div class="detail-row">
-              <div class="detail-label">Pre-authorization/Claim No</div>
-              <div class="detail-value"><%= patient.preAuthNumber %></div>
+            <div class="detail-row two-column">
+              <div class="detail-col">
+                <div class="detail-label">Membership Number</div>
+                <div class="detail-value"><%= patient.membershipNumber %></div>
+              </div>
+              <div class="detail-col">
+                <div class="detail-label">Pre-authorization/Claim No</div>
+                <div class="detail-value"><%= patient.preAuthNumber %></div>
+              </div>
             </div>
           </div>
         </section>
@@ -816,12 +924,22 @@
                 <div class="question-label">Have you had any operations or been admitted to hospital?</div>
                 <div class="question-answer"><%= patient.medicalHistory.operations %></div>
               </div>
+              <% if (patient.medicalHistory.operationsDetails) { %>
+              <div class="text-area">
+                <%= patient.medicalHistory.operationsDetails %>
+              </div>
+              <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Are there any other clinicians involved in your care?</div>
                 <div class="question-answer"><%= patient.medicalHistory.otherClinicians %></div>
               </div>
+              <% if (patient.medicalHistory.otherCliniciansDetails) { %>
+              <div class="text-area">
+                <%= patient.medicalHistory.otherCliniciansDetails %>
+              </div>
+              <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
@@ -840,7 +958,7 @@
                 <span style="line-height: 16px">consultations</span>
               </div>
               <div class="additional-question-text">
-                I was diagnosed with hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies.
+                <%= patient.medicalHistory.additionalNotes %>
               </div>
             </div>
           </div>
@@ -855,6 +973,11 @@
                 <div class="question-label">Do you exercise?</div>
                 <div class="question-answer"><%= patient.lifestyle.exercise %></div>
               </div>
+              <% if (patient.lifestyle.exerciseDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.exerciseDetails %>
+              </div>
+              <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
@@ -872,12 +995,22 @@
                 <div class="question-label">Do You Smoke?</div>
                 <div class="question-answer flexible"><%= patient.lifestyle.smoking %></div>
               </div>
+              <% if (patient.lifestyle.smokingDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.smokingDetails %>
+              </div>
+              <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Do you drink alcohol?</div>
                 <div class="question-answer"><%= patient.lifestyle.alcohol %></div>
               </div>
+              <% if (patient.lifestyle.alcoholDetails) { %>
+              <div class="text-area">
+                <%= patient.lifestyle.alcoholDetails %>
+              </div>
+              <% } %>
             </div>
           </div>
         </section>
@@ -913,18 +1046,33 @@
                 <div class="question-label">Any breast problems, for example lumps?</div>
                 <div class="question-answer"><%= patient.femalePatients.breastProblems %></div>
               </div>
+              <% if (patient.femalePatients.breastProblemsDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.breastProblemsDetails %>
+              </div>
+              <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Have you had a mammogram (inc. date)?</div>
                 <div class="question-answer"><%= patient.femalePatients.mammogram %></div>
               </div>
+              <% if (patient.femalePatients.mammogramDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.mammogramDetails %>
+              </div>
+              <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Are you require / use contraception?</div>
                 <div class="question-answer"><%= patient.femalePatients.contraception %></div>
               </div>
+              <% if (patient.femalePatients.contraceptionDetails) { %>
+              <div class="text-area">
+                <%= patient.femalePatients.contraceptionDetails %>
+              </div>
+              <% } %>
             </div>
           </div>
         </section>
@@ -1716,9 +1864,9 @@
         // PDF settings
         const A4_WIDTH_MM = 210;
         const A4_HEIGHT_MM = 297;
-        const MARGIN_MM = 15;
-        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
-        const USABLE_HEIGHT_MM = A4_HEIGHT_MM - (MARGIN_MM * 2);
+        const MARGIN_MM = 0;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM;
+        const USABLE_HEIGHT_MM = A4_HEIGHT_MM;
         
         let currentPageHeight = 0;
         let pageCount = 1;
@@ -1758,10 +1906,10 @@
             }
             
             // Add section to current page
-            const yPosition = MARGIN_MM + currentPageHeight;
+            const yPosition = currentPageHeight;
             const imageData = canvas.toDataURL('image/png');
             
-            pdf.addImage(imageData, 'PNG', MARGIN_MM, yPosition, USABLE_WIDTH_MM, sectionHeightMM);
+            pdf.addImage(imageData, 'PNG', 0, yPosition, USABLE_WIDTH_MM, sectionHeightMM);
             
             currentPageHeight += sectionHeightMM + 2; // Add small gap between sections
             
@@ -1784,8 +1932,8 @@
       // Create pages with smart content-aware breaks
       async function createSmartPages(pdf, canvas, contentAnalysis, element) {
         const A4_WIDTH_MM = 210;
-        const MARGIN_MM = 15;
-        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
+        const MARGIN_MM = 0;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM;
         const scaleFactor = USABLE_WIDTH_MM / (canvas.width / 2);
         
         console.log('Creating smart pages with content analysis...');
@@ -1846,7 +1994,7 @@
           const sliceData = sliceCanvas.toDataURL('image/png');
           const sliceHeightMM = sliceHeight * scaleFactor;
           
-          pdf.addImage(sliceData, 'PNG', MARGIN_MM, MARGIN_MM, USABLE_WIDTH_MM, sliceHeightMM);
+          pdf.addImage(sliceData, 'PNG', 0, 0, USABLE_WIDTH_MM, sliceHeightMM);
         }
         
         console.log(`Created ${allBreaks.length - 1} smart pages`);
@@ -1855,8 +2003,8 @@
       // Create standard pages with fixed height slicing
       async function createStandardPages(pdf, canvas, scaledPageHeight) {
         const A4_WIDTH_MM = 210;
-        const MARGIN_MM = 15;
-        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
+        const MARGIN_MM = 0;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM;
         const scaleFactor = USABLE_WIDTH_MM / (canvas.width / 2);
         
         console.log('Creating standard pages...');
@@ -1881,7 +2029,7 @@
           const sliceData = sliceCanvas.toDataURL('image/png');
           const sliceHeightMM = sliceHeight * scaleFactor;
           
-          pdf.addImage(sliceData, 'PNG', MARGIN_MM, MARGIN_MM, USABLE_WIDTH_MM, sliceHeightMM);
+          pdf.addImage(sliceData, 'PNG', 0, 0, USABLE_WIDTH_MM, sliceHeightMM);
           
           console.log(`Page ${i + 1}/${totalPages} created (${sliceHeight}px slice)`);
         }
@@ -1955,9 +2103,9 @@
         // PDF Page Configuration
         const A4_WIDTH_MM = 210;
         const A4_HEIGHT_MM = 297;
-        const MARGIN_MM = 15;
-        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
-        const USABLE_HEIGHT_MM = A4_HEIGHT_MM - (MARGIN_MM * 2);
+        const MARGIN_MM = 0;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM;
+        const USABLE_HEIGHT_MM = A4_HEIGHT_MM;
         
         downloadBtn.innerHTML = '⏳ Analyzing sections...';
         
@@ -2172,7 +2320,7 @@
             const imgWidth = USABLE_WIDTH_MM;
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
             
-            pdf.addImage(imgData, 'PNG', MARGIN_MM, MARGIN_MM, imgWidth, imgHeight);
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
             
             console.log(`✅ Page ${pageIndex + 1} captured: ${imgWidth}x${imgHeight.toFixed(1)}mm`);
             
@@ -2189,6 +2337,54 @@
         
         console.log(`\n🎉 Section-based PDF generation complete!`);
         return pageGroups.length;
+      }
+
+      // Simple PDF generation using browser's print function (better pixel handling)
+      function downloadSimplePDF() {
+        // Add pdf-optimized class for better styling
+        document.body.classList.add('pdf-optimized');
+        
+        // Hide download buttons
+        const downloadContainer = document.querySelector('.download-container');
+        const originalDisplay = downloadContainer.style.display;
+        downloadContainer.style.display = 'none';
+        
+        // Add print-specific styles to prevent pixel breaks
+        const printStyle = document.createElement('style');
+        printStyle.id = 'print-fix-styles';
+        printStyle.textContent = `
+          @media print {
+            * {
+              -webkit-transform: translateZ(0) !important;
+              transform: translateZ(0) !important;
+              -webkit-backface-visibility: hidden !important;
+              backface-visibility: hidden !important;
+            }
+            
+            .section, .detail-row, .question-row {
+              image-rendering: -webkit-optimize-contrast !important;
+              image-rendering: optimize-contrast !important;
+            }
+          }
+        `;
+        document.head.appendChild(printStyle);
+        
+        // Give browser time to apply styles
+        setTimeout(() => {
+          window.print();
+          
+          // Clean up after printing
+          setTimeout(() => {
+            document.body.classList.remove('pdf-optimized');
+            downloadContainer.style.display = originalDisplay;
+            
+            // Remove print styles
+            const styleElement = document.getElementById('print-fix-styles');
+            if (styleElement) {
+              styleElement.remove();
+            }
+          }, 1000);
+        }, 200);
       }
     </script>
   </body>

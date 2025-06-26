@@ -15,53 +15,61 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Sample patient data - you can modify this or get it from a database
+// Sample patient data - concise content for better PDF layout
 const patientData = {
-  fullName: "Ms. Ann Dav david hoston jimmy fidric and hijak of tvk and kajol ",
-  dateOfBirth: "22/06/1989",
-  gender: "Femalereerrrr",
-  londonAddress: "4517 Washington dc fh gh gj gjg jg jg gj gj gjg jg gj gjg jg gj gjg   Ave. Manchester,\n39495",
-  overseasAddress: "4517 Washingtoreth  Ave. Manchester,\n39495",
-  homeTel: "1234567892343234323 233432 243113",
-  workTel: "23356899",
-  mobileNo: "+44 54865656",
-  email: "oliver@gmail.com",
-  occupation: "Software Developer  2432321 sdasdasdcas dasdfasdfas dfas df asdfasdf asdfassfd",
-  howDidYouKnow: "From Website",
-  previousNHSTel: "123456789",
-  previousNHSAddress: "4517 Washington Ave. Manchester,\n39495",
-  insuranceName: "Life Insurance",
-  membershipNumber: "123456789",
-  preAuthNumber: "33567489900",
+  fullName: "Ms. Sarah Emma Thompson",
+  dateOfBirth: "15/03/1985",
+  gender: "Female",
+  londonAddress: "42 Baker Street, London\nW1U 6TJ",
+  overseasAddress: "15 Main Avenue, Dublin\nD02 K7P5, Ireland",
+  homeTel: "020 7946 0958",
+  workTel: "020 8765 4321",
+  mobileNo: "+44 7911 123456",
+  email: "sarah.thompson@email.com",
+  occupation: "Marketing Manager",
+  howDidYouKnow: "Referral from GP",
+  previousNHSTel: "020 8234 5678",
+  previousNHSAddress: "NHS Trust Hospital\n123 Health Street, London SE1 9RT",
+  insuranceName: "BUPA Health Insurance",
+  membershipNumber: "BUP123456789",
+  preAuthNumber: "AUTH987654321",
   medicalHistory: {
     pastMedicalHistory: "Yes",
-    pastMedicalHistoryDetails: "I was diagnosed with super eask asdkjdba sddilamo klsjdlasd  hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies.",
-    operations: "No",
-    otherClinicians: "No",
+    pastMedicalHistoryDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
+    operations: "Yes",
+    operationsDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
+    otherClinicians: "Yes",
+    otherCliniciansDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
     recentInvestigations: "Yes",
-    recentInvestigationsDetails: "I was diagnosed with hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies.",
-    additionalNotes: "I was diagnosed with hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies."
+    recentInvestigationsDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
+    additionalNotes: "Please notify Dr. Helen Baker (GP) at Riverside Medical Centre of any findings or treatment plans. Contact: 020 7123 4567."
   },
   lifestyle: {
-    exercise: "No",
-    diet: "Meat",
-    dietDetails: "I was diagnosed with hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies.",
-    smoking: "Yes, 2 Packets Per Day",
-    alcohol: "No"
+    exercise: "Yes",
+    exerciseDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
+    diet: "Balanced Diet",
+    dietDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
+    smoking: "No",
+    smokingDetails: "Diagnosed with mild hypertension in 2019. Seasonal allergies to pollen. Previous ankle fracture in 2020, fully healed. Regular monitoring for blood pressure with good control.",
+    alcohol: "Yes, Socially",
+    alcoholDetails: "Occasional social drinking - 1-2 glasses of wine per week maximum. No history of alcohol-related problems or dependency issues."
   },
   femalePatients: {
-    periodProblems: "Yes",
-    periodProblemsDetails: "I was diagnosed with hypertension in 2018 and underwent appendectomy in 2020. I also have a history of seasonal allergies.",
-    pregnant: "Yes",
-    pregnantDetails: "Last cervical smear date and Result: 18 Jan 2025 , something",
-    breastProblems: "No",
-    mammogram: "No",
-    contraception: "No"
+    periodProblems: "No",
+    periodProblemsDetails: "Regular 28-day cycle with normal flow. No significant pain or irregularities noted.",
+    pregnant: "No",
+    pregnantDetails: "Not currently pregnant. Last cervical screening March 2023 - normal results. Next screening due March 2026 as per NHS guidelines.",
+    breastProblems: "No", 
+    breastProblemsDetails: "No lumps, pain, or changes noticed. Regular self-examination performed monthly with no concerns identified.",
+    mammogram: "Yes",
+    mammogramDetails: "First mammogram completed August 2024 as part of routine screening. Results normal with no abnormalities detected. Next screening due August 2027.",
+    contraception: "Yes",
+    contraceptionDetails: "Combined oral contraceptive pill for past 4 years. No side effects. Regular blood pressure monitoring due to medication type."
   },
   chaperone: "No",
-  signatureName: "Amelia Johnson",
-  signatureDate: "03/06/1015",
-  relationship: "Mother"
+  signatureName: "Sarah Emma Thompson",
+  signatureDate: "15/12/2024",
+  relationship: "Patient (Self)"
 };
 
 // Routes
