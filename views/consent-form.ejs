@@ -40,6 +40,11 @@
         top: 20px;
         right: 20px;
         z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        border: 2px solid #93763c;
       }
 
       /* Development Helper Styles */
@@ -69,13 +74,16 @@
         background-color: #93763c;
         color: white;
         border: none;
-        padding: 12px 24px;
+        padding: 12px 16px;
         border-radius: 8px;
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 600;
         cursor: pointer;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
+        width: 100%;
+        margin-bottom: 8px;
+        text-align: center;
       }
 
       .download-btn:hover {
@@ -173,6 +181,10 @@
         font-size: 12px;
         line-height: 1.5;
         flex: 1;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        max-width: 100%;
       }
 
       .detail-value.bold {
@@ -219,11 +231,25 @@
         font-size: 12px;
         font-weight: 600;
         line-height: 1.5;
-        white-space: nowrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
       }
 
       .question-answer.flexible {
         white-space: normal;
+        max-width: 300px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+
+      /* Preserve flexible answers in PDF */
+      .pdf-optimized .question-answer.flexible {
+        white-space: normal !important;
+        max-width: 300px !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
       }
 
       /* Text Area Styles */
@@ -391,20 +417,263 @@
         color: #52525b;
       }
 
-      @media print {
-        body {
-          background-color: white;
-          padding: 0;
-        }
-        
-        .form-container {
-          box-shadow: none;
-          max-width: none;
+              /* PDF generation - maintain original design but ensure proper breaks */
+      .pdf-optimized {
+        /* Keep original form container styling */
+        margin: 0 !important;
+        padding: 28px 20px 56px !important;
+        background-color: white !important;
+        font-family: DM Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif !important;
+      }
+
+      /* Preserve original section styling in PDF */
+      .pdf-optimized .section {
+        padding: 12px !important;
+        margin-top: 12px !important;
+        border-radius: 8px !important;
+        background-color: #fafaf9 !important;
+      }
+
+      /* Preserve original spacing for detail rows */
+      .pdf-optimized .detail-row,
+      .pdf-optimized .question-row,
+      .pdf-optimized .final-detail-row {
+        margin-bottom: 12px !important;
+        padding-bottom: 12px !important;
+      }
+
+      .pdf-optimized .question-row {
+        border-bottom: 1px dashed #e5e5e5 !important;
+        margin-bottom: 14px !important;
+      }
+
+      .pdf-optimized .section-title {
+        margin-bottom: 16px !important;
+        color: #93763C !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        line-height: 22px !important;
+      }
+
+      .pdf-optimized .text-area {
+        margin-top: 10px !important;
+        padding: 14px 10px !important;
+        background-color: white !important;
+        border-radius: 6px !important;
+        font-size: 12px !important;
+        line-height: 1.75 !important;
+        color: #52525b !important;
+      }
+
+      .pdf-optimized .consent-paragraph {
+        margin-bottom: 20px !important;
+      }
+
+      .pdf-optimized .additional-question {
+        margin-top: 14px !important;
+      }
+
+      .pdf-optimized .signature-section {
+        margin-top: 16px !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        background-color: #fafaf9 !important;
+      }
+
+      .pdf-optimized .form-header {
+        margin-bottom: 36px !important;
+      }
+
+      /* Preserve detail value styling */
+      .pdf-optimized .detail-value,
+      .pdf-optimized .question-answer {
+        color: #444444 !important;
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+      }
+
+      .pdf-optimized .question-answer {
+        color: #0f172a !important;
+        font-weight: 600 !important;
+      }
+
+      /* Preserve label styling */
+      .pdf-optimized .detail-label {
+        color: #9A9A9A !important;
+        font-size: 12px !important;
+        line-height: 22px !important;
+        min-width: 240px !important;
+        width: 280px !important;
+      }
+
+      .pdf-optimized .question-label {
+        color: #0f172a !important;
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        line-height: 1.25 !important;
+        min-width: 240px !important;
+      }
+
+      /* Enhanced Print and PDF specific styles - preserve original design */
+        @media print {
+          * {
+            -webkit-print-color-adjust: exact !important;
+            color-adjust: exact !important;
+          }
+          
+          body {
+            background-color: white !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-family: DM Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif !important;
+          }
+          
+          .form-container {
+            box-shadow: none !important;
+            max-width: none !important;
+            padding: 28px 20px 56px !important;
+            margin: 0 !important;
+            background: white !important;
+          }
+
+          .download-container, .dev-indicator {
+            display: none !important;
+          }
+
+          /* Preserve original section styling for print */
+          .section {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            padding: 12px !important;
+            margin-top: 12px !important;
+            border-radius: 8px !important;
+            background-color: #fafaf9 !important;
+          }
+
+          /* Preserve original row styling */
+          .detail-row, .question-row, .final-detail-row {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-bottom: 12px !important;
+            padding-bottom: 12px !important;
+          }
+
+          .question-row {
+            border-bottom: 1px dashed #e5e5e5 !important;
+            margin-bottom: 14px !important;
+          }
+
+          /* Preserve text area styling */
+          .text-area {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-top: 10px !important;
+            padding: 14px 10px !important;
+            background-color: white !important;
+            border-radius: 6px !important;
+            font-size: 12px !important;
+            line-height: 1.75 !important;
+            color: #52525b !important;
+          }
+
+          /* Preserve consent styling */
+          .consent-text {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-top: 16px !important;
+            font-size: 12px !important;
+            line-height: 1.33 !important;
+            text-align: justify !important;
+            color: #262626 !important;
+          }
+
+          .consent-paragraph {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            margin-bottom: 20px !important;
+          }
+
+          /* Preserve header styling */
+          .form-header {
+            page-break-after: avoid !important;
+            break-after: avoid !important;
+            margin-bottom: 36px !important;
+          }
+
+          /* Preserve signature styling */
+          .signature-section {
+            page-break-before: avoid !important;
+            break-before: avoid !important;
+            margin-top: 16px !important;
+            padding: 12px !important;
+            border-radius: 8px !important;
+            background-color: #fafaf9 !important;
+          }
+
+          /* Preserve section title styling */
+          .section-title {
+            page-break-after: avoid !important;
+            break-after: avoid !important;
+            margin-bottom: 16px !important;
+            color: #93763C !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            line-height: 22px !important;
+          }
+
+          /* Preserve label and value styling */
+          .detail-label {
+            color: #9A9A9A !important;
+            font-size: 12px !important;
+            line-height: 22px !important;
+            min-width: 240px !important;
+            width: 280px !important;
+          }
+
+          .detail-value {
+            color: #444444 !important;
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+          }
+
+          .question-label {
+            color: #0f172a !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            line-height: 1.25 !important;
+            min-width: 240px !important;
+          }
+
+          .question-answer {
+            color: #0f172a !important;
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            line-height: 1.5 !important;
+          }
+
+          /* Text handling */
+          .detail-value, .question-answer, .consent-text {
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
+            hyphens: auto !important;
+          }
         }
 
-        .download-container {
-          display: none;
-        }
+      /* Additional text handling for very long content */
+      .detail-value.long-text {
+        max-height: 100px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .detail-value.long-text::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 30px;
+        height: 20px;
+        background: linear-gradient(to right, transparent, white);
       }
     </style>
   </head>
@@ -412,8 +681,11 @@
   <body>
           <!-- Download Button -->
       <div class="download-container">
+        <div style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #93763c; font-size: 14px;">
+          PDF Generation Options
+        </div>
         <button class="download-btn" onclick="downloadPDF()">
-          📄 Download PDF
+          📄 Download PDF (Sections)
         </button>
       </div>
 
@@ -766,7 +1038,464 @@
         
         // Store current timestamp
         localStorage.setItem('patientDataTimestamp', dataTimestamp);
+        
+        // Handle long text content
+        handleLongTextContent();
       });
+
+      // Test page break functionality
+      function testPageBreaks() {
+        console.clear();
+        console.log('🔧 Testing Page Break System...');
+        
+        const element = document.getElementById('consent-form');
+        if (!element) {
+          alert('❌ Form element not found!');
+          return;
+        }
+        
+        try {
+          const contentAnalysis = analyzeContentBreaks(element);
+          console.log('✅ Content analysis completed:', contentAnalysis);
+          
+          // Visual debug mode - highlight sections
+          addVisualDebugMarkers(contentAnalysis);
+          
+          alert(`✅ Content Analysis Test Completed!\n\n` +
+                `📄 Total height: ${contentAnalysis.analysis.totalHeight}px\n` +
+                `🔍 Atomic elements: ${contentAnalysis.analysis.atomicElements}\n` +
+                `🔧 Break points found: ${contentAnalysis.breakPoints.length}\n` +
+                `📃 Estimated pages: ${contentAnalysis.totalPages}\n\n` +
+                `Check console for detailed breakdown.\n` +
+                `Visual markers added to show section boundaries.`);
+                
+          // Clean up visual markers after 10 seconds
+          setTimeout(() => {
+            removeVisualDebugMarkers();
+            console.log('🧹 Visual debug markers removed');
+          }, 10000);
+          
+        } catch (error) {
+          console.error('❌ Content analysis test failed:', error);
+          alert(`❌ Content Analysis Test Failed!\n\nError: ${error.message}\n\nCheck console for details.`);
+        }
+      }
+
+      // Visual debug functions
+      function addVisualDebugMarkers(contentAnalysis) {
+        removeVisualDebugMarkers(); // Clean up any existing markers
+        
+        const element = document.getElementById('consent-form');
+        
+        // Add markers for break points
+        contentAnalysis.breakPoints.forEach((bp, index) => {
+          const marker = document.createElement('div');
+          marker.className = 'debug-marker';
+          marker.style.cssText = `
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: ${bp.isConsent ? '#ff4444' : '#44ff44'};
+            z-index: 999;
+            top: ${bp.elementTop}px;
+            opacity: 0.8;
+          `;
+          
+          const label = document.createElement('div');
+          label.className = 'debug-label';
+          label.style.cssText = `
+            position: absolute;
+            left: 10px;
+            top: -20px;
+            background: ${bp.isConsent ? '#ff4444' : '#44ff44'};
+            color: white;
+            padding: 2px 8px;
+            font-size: 10px;
+            border-radius: 3px;
+            white-space: nowrap;
+          `;
+          label.textContent = `Page Break ${index + 1}: ${bp.sectionTitle || bp.reason}${bp.isConsent ? ' [CONSENT]' : ''}`;
+          marker.appendChild(label);
+          
+          element.appendChild(marker);
+        });
+        
+        // Add A4 page height markers
+        const A4_HEIGHT_PX = 963; // Usable height
+        const totalHeight = element.offsetHeight;
+        const pageCount = Math.ceil(totalHeight / A4_HEIGHT_PX);
+        
+        for (let i = 1; i < pageCount; i++) {
+          const pageMarker = document.createElement('div');
+          pageMarker.className = 'debug-page-marker';
+          pageMarker.style.cssText = `
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #0066ff;
+            z-index: 998;
+            top: ${i * A4_HEIGHT_PX}px;
+            opacity: 0.5;
+          `;
+          
+          const pageLabel = document.createElement('div');
+          pageLabel.style.cssText = `
+            position: absolute;
+            right: 10px;
+            top: -15px;
+            background: #0066ff;
+            color: white;
+            padding: 1px 6px;
+            font-size: 9px;
+            border-radius: 2px;
+          `;
+          pageLabel.textContent = `A4 Page ${i} End`;
+          pageMarker.appendChild(pageLabel);
+          
+          element.appendChild(pageMarker);
+        }
+      }
+
+              function removeVisualDebugMarkers() {
+          const markers = document.querySelectorAll('.debug-marker, .debug-page-marker');
+          markers.forEach(marker => marker.remove());
+        }
+
+        // Alternative PDF generation with forced breaks
+        async function alternativePDF() {
+          try {
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.innerHTML = '⏳ Alternative PDF generation...';
+            downloadBtn.disabled = true;
+
+            // Hide UI elements
+            const downloadContainer = document.querySelector('.download-container');
+            downloadContainer.style.display = 'none';
+
+            await checkLibrariesLoaded();
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+
+            // Add manual page break before consent section
+            const consentSection = document.querySelector('.section').parentElement.querySelector('.section:has(.consent-text)') || 
+                                  Array.from(document.querySelectorAll('.section')).find(s => 
+                                    s.querySelector('.section-title')?.textContent?.toLowerCase()?.includes('agreement'));
+
+            if (consentSection) {
+              console.log('🎯 Found consent section, adding manual page break');
+              
+              // Temporarily add a page break style
+              consentSection.style.pageBreakBefore = 'always';
+              consentSection.style.breakBefore = 'page';
+              consentSection.style.marginTop = '50mm';
+            }
+
+            // Capture with forced breaks
+            const element = document.getElementById('consent-form');
+            const canvas = await window.html2canvas(element, {
+              scale: 1.5,
+              useCORS: true,
+              allowTaint: true,
+              backgroundColor: '#ffffff',
+              onclone: function(clonedDoc) {
+                const uiElements = clonedDoc.querySelectorAll('.download-container, .dev-indicator');
+                uiElements.forEach(el => el.remove());
+              }
+            });
+
+            // Simple page splitting
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 180; // Slightly smaller for margins
+            const pageHeight = 250; // Shorter pages to avoid content cuts
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            let y = 0;
+            let pageNum = 1;
+
+            while (y < imgHeight) {
+              if (pageNum > 1) pdf.addPage();
+              
+              const remainingHeight = Math.min(pageHeight, imgHeight - y);
+              pdf.addImage(imgData, 'PNG', 15, 15, imgWidth, imgHeight, undefined, 'NONE');
+              
+              // Move the image up for each subsequent page
+              if (pageNum > 1) {
+                pdf.addImage(imgData, 'PNG', 15, 15 - (y * imgWidth / canvas.width), imgWidth, imgHeight);
+              }
+              
+              y += pageHeight;
+              pageNum++;
+            }
+
+            // Clean up styles
+            if (consentSection) {
+              consentSection.style.pageBreakBefore = '';
+              consentSection.style.breakBefore = '';
+              consentSection.style.marginTop = '';
+            }
+
+            // Save PDF
+            const currentDate = new Date().toISOString().split('T')[0];
+            pdf.save(`Patient_Form_Alternative_${currentDate}.pdf`);
+
+            alert(`🎯 Alternative PDF created with ${pdf.getNumberOfPages()} pages!`);
+
+          } catch (error) {
+            console.error('Alternative PDF failed:', error);
+            alert('Alternative method failed: ' + error.message);
+          } finally {
+            // Reset UI
+            const downloadContainer = document.querySelector('.download-container');
+            downloadContainer.style.display = 'block';
+            
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.innerHTML = '📄 Download PDF';
+            downloadBtn.disabled = false;
+          }
+        }
+
+              // Print to PDF method - uses browser's native print functionality
+        async function printToPDF() {
+          try {
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.innerHTML = '⏳ Preparing for print...';
+            downloadBtn.disabled = true;
+
+            // Hide UI elements for printing
+            const downloadContainer = document.querySelector('.download-container');
+            downloadContainer.style.display = 'none';
+
+            // Add print-specific styles temporarily
+            const printStyle = document.createElement('style');
+            printStyle.id = 'print-specific-styles';
+            printStyle.innerHTML = `
+              @media screen {
+                .print-only-break {
+                  display: none;
+                }
+              }
+              
+              @media print {
+                /* Force break before consent section using a marker */
+                .consent-section-marker {
+                  page-break-before: always !important;
+                  break-before: page !important;
+                  height: 0 !important;
+                  margin: 0 !important;
+                  padding: 0 !important;
+                }
+                
+                /* Extra protection for consent content */
+                .section-title:contains("Agreement") {
+                  page-break-before: always !important;
+                }
+              }
+            `;
+            document.head.appendChild(printStyle);
+
+            // Find and mark consent section
+            const consentSection = Array.from(document.querySelectorAll('.section')).find(section => {
+              const title = section.querySelector('.section-title')?.textContent || '';
+              return title.toLowerCase().includes('agreement') || 
+                     title.toLowerCase().includes('consent') ||
+                     section.querySelector('.consent-text');
+            });
+
+            if (consentSection) {
+              console.log('🎯 Found consent section, adding print marker');
+              
+              // Add a marker element before consent section
+              const marker = document.createElement('div');
+              marker.className = 'consent-section-marker print-only-break';
+              consentSection.parentNode.insertBefore(marker, consentSection);
+            }
+
+            // Show instructions
+            alert(`📄 Print to PDF Instructions:\n\n` +
+                  `1. Click OK to open print dialog\n` +
+                  `2. Choose "Save as PDF" as destination\n` +
+                  `3. Set margins to "Minimum"\n` +
+                  `4. Enable "More settings" > "Background graphics"\n` +
+                  `5. Click "Save"\n\n` +
+                  `This method uses browser's native page breaking!`);
+
+            // Trigger print dialog
+            window.print();
+
+            // Clean up after print dialog closes
+            setTimeout(() => {
+              // Remove print styles
+              const printStyleEl = document.getElementById('print-specific-styles');
+              if (printStyleEl) printStyleEl.remove();
+
+              // Remove markers
+              const markers = document.querySelectorAll('.consent-section-marker');
+              markers.forEach(marker => marker.remove());
+
+              // Restore UI
+              downloadContainer.style.display = 'block';
+              downloadBtn.innerHTML = '📄 Download PDF';
+              downloadBtn.disabled = false;
+
+              console.log('🧹 Print cleanup completed');
+            }, 1000);
+
+          } catch (error) {
+            console.error('Print to PDF failed:', error);
+            alert('Print preparation failed: ' + error.message);
+            
+            // Restore UI on error
+            const downloadContainer = document.querySelector('.download-container');
+            downloadContainer.style.display = 'block';
+            
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.innerHTML = '📄 Download PDF';
+            downloadBtn.disabled = false;
+          }
+        }
+
+        // Manual page breaks with physical spacing
+        async function manualBreakPDF() {
+          try {
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.innerHTML = '⏳ Adding manual breaks...';
+            downloadBtn.disabled = true;
+
+            const downloadContainer = document.querySelector('.download-container');
+            downloadContainer.style.display = 'none';
+
+            await checkLibrariesLoaded();
+
+            // Find consent section
+            const consentSection = Array.from(document.querySelectorAll('.section')).find(section => {
+              const title = section.querySelector('.section-title')?.textContent || '';
+              return title.toLowerCase().includes('agreement') || 
+                     title.toLowerCase().includes('consent');
+            });
+
+            if (consentSection) {
+              console.log('🎯 Adding physical space before consent section');
+              
+              // Add a large spacer div before consent section
+              const spacer = document.createElement('div');
+              spacer.className = 'manual-page-spacer';
+              spacer.style.cssText = `
+                height: 400px;
+                background: transparent;
+                border: none;
+                margin: 0;
+                padding: 0;
+              `;
+              consentSection.parentNode.insertBefore(spacer, consentSection);
+            }
+
+            // Now generate PDF normally
+            downloadBtn.innerHTML = '⏳ Generating PDF with manual breaks...';
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+
+            const element = document.getElementById('consent-form');
+            const canvas = await window.html2canvas(element, {
+              scale: 1.5,
+              useCORS: true,
+              allowTaint: true,
+              backgroundColor: '#ffffff',
+              onclone: function(clonedDoc) {
+                const uiElements = clonedDoc.querySelectorAll('.download-container, .dev-indicator');
+                uiElements.forEach(el => el.remove());
+              }
+            });
+
+            // Standard PDF generation
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 190;
+            const pageHeight = 270;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            let position = 0;
+            let pageCount = 1;
+
+            while (position < imgHeight) {
+              if (pageCount > 1) pdf.addPage();
+              
+              pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight, undefined, 'NONE');
+              
+              if (pageCount > 1) {
+                // Offset for subsequent pages
+                pdf.addImage(imgData, 'PNG', 10, 10 - position, imgWidth, imgHeight);
+              }
+              
+              position += pageHeight;
+              pageCount++;
+            }
+
+            // Clean up spacer
+            const spacer = document.querySelector('.manual-page-spacer');
+            if (spacer) spacer.remove();
+
+            // Save PDF
+            const currentDate = new Date().toISOString().split('T')[0];
+            pdf.save(`Patient_Form_Manual_Breaks_${currentDate}.pdf`);
+
+            alert(`✂️ PDF with manual breaks created!\n${pdf.getNumberOfPages()} pages generated.`);
+
+          } catch (error) {
+            console.error('Manual break PDF failed:', error);
+            alert('Manual break method failed: ' + error.message);
+          } finally {
+            // Clean up
+            const spacer = document.querySelector('.manual-page-spacer');
+            if (spacer) spacer.remove();
+            
+            const downloadContainer = document.querySelector('.download-container');
+            downloadContainer.style.display = 'block';
+            
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.innerHTML = '📄 Download PDF';
+            downloadBtn.disabled = false;
+          }
+        }
+
+        // Function to handle very long text content
+        function handleLongTextContent() {
+        const textElements = document.querySelectorAll('.detail-value, .question-answer');
+        
+        textElements.forEach(element => {
+          const textLength = element.textContent.trim().length;
+          const elementHeight = element.offsetHeight;
+          
+          // If text is very long (>150 chars) or element height is large (>50px)
+          if (textLength > 150 || elementHeight > 50) {
+            element.classList.add('long-text');
+            
+            // Add a title attribute for hover tooltip
+            if (!element.title && textLength > 100) {
+              element.title = element.textContent.trim();
+            }
+          }
+          
+          // Handle extremely long text (>300 chars) - truncate with expand option
+          if (textLength > 300) {
+            const originalText = element.textContent.trim();
+            const truncatedText = originalText.substring(0, 297) + '...';
+            
+            // Create expand functionality
+            element.innerHTML = truncatedText + ' <span class="expand-text" style="color: #93763c; cursor: pointer; font-weight: bold;">[Show More]</span>';
+            
+            element.querySelector('.expand-text').addEventListener('click', function() {
+              if (element.textContent.includes('[Show More]')) {
+                element.innerHTML = originalText + ' <span class="expand-text" style="color: #93763c; cursor: pointer; font-weight: bold;">[Show Less]</span>';
+              } else {
+                element.innerHTML = truncatedText + ' <span class="expand-text" style="color: #93763c; cursor: pointer; font-weight: bold;">[Show More]</span>';
+              }
+            });
+          }
+        });
+      }
 
       // Wait for libraries to load
       function checkLibrariesLoaded() {
@@ -788,12 +1517,382 @@
         });
       }
 
+      // Content-aware page break detection
+      function analyzeContentBreaks(element) {
+        const A4_HEIGHT_PX = 1123; // A4 height in pixels at 96 DPI  
+        const A4_WIDTH_PX = 794;   // A4 width in pixels at 96 DPI
+        const MARGIN_PX = 80;      // Margins
+        const USABLE_HEIGHT_PX = A4_HEIGHT_PX - (MARGIN_PX * 2);
+        const USABLE_WIDTH_PX = A4_WIDTH_PX - (MARGIN_PX * 2);
+        
+        console.log('=== Content-Aware Page Analysis ===');
+        console.log(`Form dimensions: ${element.offsetWidth}x${element.offsetHeight}px`);
+        console.log(`A4 usable area: ${USABLE_WIDTH_PX}x${USABLE_HEIGHT_PX}px`);
+        
+        // Find all elements that should NOT be split
+        const atomicElements = element.querySelectorAll(`
+          .section, 
+          .form-header, 
+          .signature-section,
+          .detail-row,
+          .question-row,
+          .final-detail-row,
+          .text-area,
+          .consent-paragraph,
+          .additional-question
+        `);
+        
+        // Special handling for consent section - treat entire consent section as one unit
+        const consentSection = element.querySelector('.section:has(.consent-text)') || 
+                              element.querySelector('[class*="consent"]')?.closest('.section');
+        
+        if (consentSection) {
+          console.log('Found consent section - treating as atomic unit');
+        }
+        
+        const breakCandidates = [];
+        let currentY = 0;
+        
+        // Group elements by their parent section for better analysis
+        const elementsBySection = new Map();
+        
+        // First, identify all major sections
+        const sections = element.querySelectorAll('.section');
+        sections.forEach((section, sectionIndex) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionTitle = section.querySelector('.section-title')?.textContent?.trim() || `Section ${sectionIndex}`;
+          
+          console.log(`🏗️ Section "${sectionTitle}": Top ${sectionTop}px, Height ${sectionHeight}px`);
+          
+          // Check if this entire section fits on current page
+          const pageNumber = Math.floor(sectionTop / USABLE_HEIGHT_PX);
+          const positionInPage = sectionTop % USABLE_HEIGHT_PX;
+          
+          // Special handling for consent section (AGREEMENT, DECLARATION AND CONSENT)
+          const isConsentSection = sectionTitle.toLowerCase().includes('agreement') || 
+                                  sectionTitle.toLowerCase().includes('consent') ||
+                                  section.querySelector('.consent-text');
+          
+          if (isConsentSection) {
+            console.log(`🚨 Found consent section: "${sectionTitle}" - treating as unbreakable`);
+          }
+          
+          // If section would overflow page, it needs a page break
+          if (positionInPage + sectionHeight > USABLE_HEIGHT_PX && positionInPage > 100) {
+            console.log(`📄 Section "${sectionTitle}" needs page break - would overflow at ${positionInPage + sectionHeight}px`);
+            
+            breakCandidates.push({
+              element: section,
+              pageBreakBefore: true,
+              elementTop: sectionTop,
+              elementHeight: sectionHeight,
+              pageNumber: pageNumber + 1,
+              reason: isConsentSection ? 'consent-section-overflow' : 'section-overflow',
+              sectionTitle: sectionTitle,
+              isConsent: isConsentSection
+            });
+          }
+        });
+        
+        // Also analyze individual elements within sections that are very tall
+        Array.from(atomicElements).forEach((elem, index) => {
+          // Skip if this element is already covered by a section-level break
+          const parentSection = elem.closest('.section');
+          const alreadyCovered = breakCandidates.some(bc => bc.element === parentSection);
+          
+          if (!alreadyCovered) {
+            const elementTop = elem.offsetTop;
+            const elementHeight = elem.offsetHeight;
+            
+            const pageNumber = Math.floor(elementTop / USABLE_HEIGHT_PX);
+            const positionInPage = elementTop % USABLE_HEIGHT_PX;
+            
+            // Only add individual element breaks for very large elements
+            if (elementHeight > 200 && positionInPage + elementHeight > USABLE_HEIGHT_PX) {
+              console.log(`🔄 Large element ${index} (${elem.className}) needs page break`);
+              
+              breakCandidates.push({
+                element: elem,
+                pageBreakBefore: true,
+                elementTop: elementTop,
+                elementHeight: elementHeight,
+                pageNumber: pageNumber + 1,
+                reason: 'large-element-overflow'
+              });
+            }
+          }
+        });
+        
+        console.log(`Found ${breakCandidates.length} break candidates`);
+        
+        return {
+          breakPoints: breakCandidates,
+          totalPages: Math.ceil(element.offsetHeight / USABLE_HEIGHT_PX),
+          analysis: {
+            totalHeight: element.offsetHeight,
+            usablePageHeight: USABLE_HEIGHT_PX,
+            atomicElements: atomicElements.length
+          }
+        };
+      }
+
+      // Apply CSS page breaks for better PDF generation
+      function applyPageBreaks(breakPoints) {
+        console.log('=== Applying Page Breaks ===');
+        
+        // Remove any existing page break styles
+        const existingBreaks = document.querySelectorAll('.pdf-page-break');
+        existingBreaks.forEach(el => el.classList.remove('pdf-page-break'));
+        
+        // Add CSS for page breaks
+        const style = document.createElement('style');
+        style.id = 'pdf-page-breaks';
+        style.innerHTML = `
+          .pdf-page-break {
+            margin-top: 100px !important;
+            border-top: 2px dashed #ccc !important;
+            padding-top: 20px !important;
+          }
+          
+          .section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+          
+          .detail-row, .question-row {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // Apply page breaks to identified elements
+        let appliedBreaks = 0;
+        breakPoints.forEach((bp, index) => {
+          if (bp.pageBreakBefore && bp.element) {
+            console.log(`Applying page break to section ${index}`);
+            bp.element.classList.add('pdf-page-break');
+            appliedBreaks++;
+          }
+        });
+        
+        console.log(`Applied ${appliedBreaks} page breaks`);
+        return style; // Return style element for cleanup
+      }
+
+      // NEW APPROACH: Capture individual sections for perfect page control
+      async function captureSectionsIndividually(pdf, downloadBtn) {
+        const element = document.getElementById('consent-form');
+        
+        // Get all major sections
+        const sections = [
+          { 
+            element: element.querySelector('.form-header'), 
+            name: 'Header',
+            forceNewPage: false 
+          },
+          ...Array.from(element.querySelectorAll('.section')).map((section, index) => {
+            const title = section.querySelector('.section-title')?.textContent?.trim() || `Section ${index + 1}`;
+            const isConsent = title.toLowerCase().includes('agreement') || 
+                             title.toLowerCase().includes('consent');
+            
+            return {
+              element: section,
+              name: title,
+              forceNewPage: isConsent, // Consent sections get their own page
+              isConsent: isConsent
+            };
+          }),
+          { 
+            element: element.querySelector('.signature-section'), 
+            name: 'Signature',
+            forceNewPage: false 
+          }
+        ].filter(item => item.element); // Remove null elements
+        
+        console.log('📋 Sections to capture:', sections.map(s => s.name));
+        
+        // PDF settings
+        const A4_WIDTH_MM = 210;
+        const A4_HEIGHT_MM = 297;
+        const MARGIN_MM = 15;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
+        const USABLE_HEIGHT_MM = A4_HEIGHT_MM - (MARGIN_MM * 2);
+        
+        let currentPageHeight = 0;
+        let pageCount = 1;
+        let isFirstSection = true;
+        
+        for (let i = 0; i < sections.length; i++) {
+          const section = sections[i];
+          downloadBtn.innerHTML = `⏳ Capturing: ${section.name}...`;
+          
+          console.log(`\n📸 Capturing section: ${section.name}`);
+          
+          try {
+            // Capture this section individually
+            const canvas = await window.html2canvas(section.element, {
+              scale: 2,
+              useCORS: true,
+              allowTaint: true,
+              backgroundColor: '#ffffff',
+              logging: false
+            });
+            
+            // Calculate dimensions
+            const scaleFactor = USABLE_WIDTH_MM / (canvas.width / 2);
+            const sectionHeightMM = (canvas.height / 2) * scaleFactor;
+            
+            console.log(`   📐 Section "${section.name}": ${sectionHeightMM.toFixed(1)}mm high`);
+            
+            // Check if we need a new page
+            const needsNewPage = section.forceNewPage || 
+                               (currentPageHeight + sectionHeightMM > USABLE_HEIGHT_MM && !isFirstSection);
+            
+            if (needsNewPage && !isFirstSection) {
+              pdf.addPage();
+              currentPageHeight = 0;
+              pageCount++;
+              console.log(`   📄 Started new page ${pageCount} for "${section.name}"`);
+            }
+            
+            // Add section to current page
+            const yPosition = MARGIN_MM + currentPageHeight;
+            const imageData = canvas.toDataURL('image/png');
+            
+            pdf.addImage(imageData, 'PNG', MARGIN_MM, yPosition, USABLE_WIDTH_MM, sectionHeightMM);
+            
+            currentPageHeight += sectionHeightMM + 2; // Add small gap between sections
+            
+            console.log(`   ✅ Added "${section.name}" at Y=${yPosition.toFixed(1)}mm (page ${pageCount})`);
+            
+            isFirstSection = false;
+            
+          } catch (error) {
+            console.error(`❌ Failed to capture section "${section.name}":`, error);
+          }
+          
+          // Small delay to prevent overwhelming the browser
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        console.log(`\n🎉 PDF creation complete: ${pageCount} pages, ${sections.length} sections`);
+        return pageCount;
+      }
+
+      // Create pages with smart content-aware breaks
+      async function createSmartPages(pdf, canvas, contentAnalysis, element) {
+        const A4_WIDTH_MM = 210;
+        const MARGIN_MM = 15;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
+        const scaleFactor = USABLE_WIDTH_MM / (canvas.width / 2);
+        
+        console.log('Creating smart pages with content analysis...');
+        
+        // Convert break points to canvas coordinates with special handling
+        const pageBreaks = contentAnalysis.breakPoints.map(bp => {
+          console.log(`Processing break point: ${bp.sectionTitle || bp.reason} (${bp.isConsent ? 'CONSENT' : 'NORMAL'})`);
+          
+          return {
+            yPosition: bp.elementTop * 2, // Scale factor for canvas
+            element: bp.element,
+            reason: bp.reason,
+            sectionTitle: bp.sectionTitle,
+            isConsent: bp.isConsent,
+            priority: bp.isConsent ? 'high' : 'normal' // Consent sections get high priority
+          };
+        });
+        
+        // Sort by position and priority
+        pageBreaks.sort((a, b) => {
+          if (a.yPosition !== b.yPosition) return a.yPosition - b.yPosition;
+          return a.priority === 'high' ? -1 : 1; // High priority first
+        });
+        
+        // Add start and end points
+        const allBreaks = [
+          { yPosition: 0, reason: 'start' },
+          ...pageBreaks,
+          { yPosition: canvas.height, reason: 'end' }
+        ].sort((a, b) => a.yPosition - b.yPosition);
+        
+        console.log('Page breaks:', allBreaks);
+        
+        // Create pages between break points
+        for (let i = 0; i < allBreaks.length - 1; i++) {
+          const startY = allBreaks[i].yPosition;
+          const endY = allBreaks[i + 1].yPosition;
+          const sliceHeight = endY - startY;
+          
+          // Check if this slice contains consent content
+          const containsConsent = allBreaks[i + 1].isConsent || allBreaks[i].isConsent;
+          const sectionInfo = allBreaks[i + 1].sectionTitle || allBreaks[i].sectionTitle || 'Unknown';
+          
+          console.log(`Page ${i + 1}: ${startY}px to ${endY}px (height: ${sliceHeight}px) ${containsConsent ? '[CONSENT]' : ''} - ${sectionInfo}`);
+          
+          if (i > 0) pdf.addPage();
+          
+          // Create a slice of the canvas
+          const sliceCanvas = document.createElement('canvas');
+          sliceCanvas.width = canvas.width;
+          sliceCanvas.height = sliceHeight;
+          const sliceCtx = sliceCanvas.getContext('2d');
+          
+          // Copy the relevant portion
+          sliceCtx.drawImage(canvas, 0, startY, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
+          
+          // Add to PDF
+          const sliceData = sliceCanvas.toDataURL('image/png');
+          const sliceHeightMM = sliceHeight * scaleFactor;
+          
+          pdf.addImage(sliceData, 'PNG', MARGIN_MM, MARGIN_MM, USABLE_WIDTH_MM, sliceHeightMM);
+        }
+        
+        console.log(`Created ${allBreaks.length - 1} smart pages`);
+      }
+
+      // Create standard pages with fixed height slicing
+      async function createStandardPages(pdf, canvas, scaledPageHeight) {
+        const A4_WIDTH_MM = 210;
+        const MARGIN_MM = 15;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
+        const scaleFactor = USABLE_WIDTH_MM / (canvas.width / 2);
+        
+        console.log('Creating standard pages...');
+        
+        const totalPages = Math.ceil(canvas.height / (scaledPageHeight * 2));
+        console.log(`Total pages needed: ${totalPages}`);
+        
+        for (let i = 0; i < totalPages; i++) {
+          if (i > 0) pdf.addPage();
+          
+          const startY = i * scaledPageHeight * 2;
+          const sliceHeight = Math.min(scaledPageHeight * 2, canvas.height - startY);
+          
+          // Create canvas slice
+          const sliceCanvas = document.createElement('canvas');
+          sliceCanvas.width = canvas.width;
+          sliceCanvas.height = sliceHeight;
+          const sliceCtx = sliceCanvas.getContext('2d');
+          
+          sliceCtx.drawImage(canvas, 0, startY, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
+          
+          const sliceData = sliceCanvas.toDataURL('image/png');
+          const sliceHeightMM = sliceHeight * scaleFactor;
+          
+          pdf.addImage(sliceData, 'PNG', MARGIN_MM, MARGIN_MM, USABLE_WIDTH_MM, sliceHeightMM);
+          
+          console.log(`Page ${i + 1}/${totalPages} created (${sliceHeight}px slice)`);
+        }
+      }
+
+      // SMART DOM-AWARE PDF GENERATION
       async function downloadPDF() {
         try {
           // Show loading state
           const downloadBtn = document.querySelector('.download-btn');
-          const originalText = downloadBtn.innerHTML;
-          downloadBtn.innerHTML = '⏳ Generating PDF...';
+          downloadBtn.innerHTML = '⏳ Analyzing DOM structure...';
           downloadBtn.disabled = true;
 
           // Hide the download button temporarily
@@ -807,54 +1906,22 @@
           const { jsPDF } = window.jspdf;
           const pdf = new jsPDF('p', 'mm', 'a4');
 
-          // Get the form container
-          const element = document.getElementById('consent-form');
-          
-          // Use html2canvas to convert HTML to canvas
-          const canvas = await window.html2canvas(element, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff',
-            width: element.scrollWidth,
-            height: element.scrollHeight,
-            logging: false,
-            onclone: function(clonedDoc) {
-              // Remove any problematic elements from the cloned document
-              const downloadElements = clonedDoc.querySelectorAll('.download-container');
-              downloadElements.forEach(el => el.remove());
-            }
-          });
-
-          // Calculate dimensions
-          const imgData = canvas.toDataURL('image/png');
-          const imgWidth = 210; // A4 width in mm
-          const pageHeight = 295; // A4 height in mm
-          const imgHeight = (canvas.height * imgWidth) / canvas.width;
-          let heightLeft = imgHeight;
-          let position = 0;
-
-          // Add first page
-          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-
-          // Add additional pages if needed
-          while (heightLeft >= 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-          }
+          // SMART APPROACH: Analyze DOM tree and create intelligent page breaks
+          downloadBtn.innerHTML = '⏳ Reading rendered content...';
+          await createSmartDOMBasedPDF(pdf, downloadBtn);
 
           // Generate filename with current date
           const currentDate = new Date().toISOString().split('T')[0];
-          const filename = `Patient_Consent_Form_${currentDate}.pdf`;
+          const actualPages = pdf.getNumberOfPages();
+          const filename = `Patient_Consent_Form_${currentDate}_${actualPages}pages.pdf`;
 
           // Download the PDF
+          downloadBtn.innerHTML = '⏳ Saving PDF...';
           pdf.save(filename);
 
           // Show success message
-          alert('PDF downloaded successfully!');
+          const message = `✅ Smart PDF generated successfully!\n\n📄 ${actualPages} pages created\n🧠 DOM-aware page breaks\n🚫 No DIV splitting\n\nFilename: ${filename}`;
+          alert(message);
 
         } catch (error) {
           console.error('Error generating PDF:', error);
@@ -879,6 +1946,249 @@
             downloadBtn.disabled = false;
           }
         }
+      }
+
+      // IMPROVED SECTION-BASED PDF CREATION
+      async function createSmartDOMBasedPDF(pdf, downloadBtn) {
+        const formElement = document.getElementById('consent-form');
+        
+        // PDF Page Configuration
+        const A4_WIDTH_MM = 210;
+        const A4_HEIGHT_MM = 297;
+        const MARGIN_MM = 15;
+        const USABLE_WIDTH_MM = A4_WIDTH_MM - (MARGIN_MM * 2);
+        const USABLE_HEIGHT_MM = A4_HEIGHT_MM - (MARGIN_MM * 2);
+        
+        downloadBtn.innerHTML = '⏳ Analyzing sections...';
+        
+        // Get all major sections (including header and signature)
+        const sections = [];
+        
+        // Add header
+        const header = formElement.querySelector('.form-header');
+        if (header) {
+          sections.push({
+            element: header,
+            type: 'header',
+            title: 'Header',
+            isConsent: false,
+            priority: 'normal'
+          });
+        }
+        
+        // Add all content sections
+        const contentSections = formElement.querySelectorAll('.section');
+        contentSections.forEach((section, index) => {
+          const titleElement = section.querySelector('.section-title');
+          const title = titleElement?.textContent?.trim() || `Section ${index + 1}`;
+          const isConsent = title.toLowerCase().includes('agreement') || 
+                           title.toLowerCase().includes('consent') ||
+                           section.querySelector('.consent-text');
+          
+          sections.push({
+            element: section,
+            type: 'section',
+            title: title,
+            isConsent: isConsent,
+            priority: isConsent ? 'high' : 'normal'
+          });
+        });
+        
+        // Add signature section
+        const signature = formElement.querySelector('.signature-section');
+        if (signature) {
+          sections.push({
+            element: signature,
+            type: 'signature',
+            title: 'Signature',
+            isConsent: false,
+            priority: 'low'
+          });
+        }
+        
+        console.log(`📋 Found ${sections.length} sections to process`);
+        
+        downloadBtn.innerHTML = '⏳ Measuring section heights...';
+        
+        // Measure each section's actual height
+        const sectionData = [];
+        for (let i = 0; i < sections.length; i++) {
+          const section = sections[i];
+          
+          // Create temporary container to measure actual height
+          const tempContainer = document.createElement('div');
+          tempContainer.className = 'form-container pdf-optimized';
+          tempContainer.style.cssText = `
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 595px;
+            background: white;
+            padding: 28px 20px 56px;
+            font-family: DM Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;
+            visibility: hidden;
+          `;
+          
+          const clonedElement = section.element.cloneNode(true);
+          tempContainer.appendChild(clonedElement);
+          document.body.appendChild(tempContainer);
+          
+          // Measure the actual height
+          const actualHeight = tempContainer.offsetHeight;
+          const heightMM = (actualHeight * 25.4) / 96; // Convert px to mm (96 DPI)
+          
+          sectionData.push({
+            ...section,
+            heightPx: actualHeight,
+            heightMM: heightMM
+          });
+          
+          console.log(`📏 ${section.title}: ${actualHeight}px (${heightMM.toFixed(1)}mm) ${section.isConsent ? '[CONSENT]' : ''}`);
+          
+          // Clean up
+          document.body.removeChild(tempContainer);
+        }
+        
+        downloadBtn.innerHTML = '⏳ Calculating optimal page breaks...';
+        
+        // Smart page grouping algorithm
+        const pageGroups = [];
+        let currentPageSections = [];
+        let currentPageHeight = 0;
+        let pageNumber = 1;
+        
+        console.log(`\n📊 Calculating page breaks (max height: ${USABLE_HEIGHT_MM}mm)...`);
+        
+        for (let i = 0; i < sectionData.length; i++) {
+          const section = sectionData[i];
+          const sectionHeight = section.heightMM;
+          
+          // Special rules for page breaks
+          let forceNewPage = false;
+          
+          // 1. Consent sections should start on new page if current page has content
+          if (section.isConsent && currentPageSections.length > 0 && currentPageHeight > 50) {
+            forceNewPage = true;
+            console.log(`🚨 Forcing new page for consent section: ${section.title}`);
+          }
+          
+          // 2. If section is too tall for current page and page has content
+          if (!forceNewPage && currentPageHeight + sectionHeight > USABLE_HEIGHT_MM && currentPageSections.length > 0) {
+            forceNewPage = true;
+            console.log(`📄 Section too tall for current page: ${section.title} (${sectionHeight.toFixed(1)}mm needed, ${(USABLE_HEIGHT_MM - currentPageHeight).toFixed(1)}mm available)`);
+          }
+          
+          // 3. Very large sections (signatures) should go with previous content if possible
+          if (section.type === 'signature' && currentPageHeight + sectionHeight <= USABLE_HEIGHT_MM) {
+            // Keep signature with previous content if it fits
+            forceNewPage = false;
+          }
+          
+          // Start new page if needed
+          if (forceNewPage) {
+            pageGroups.push({
+              pageNumber: pageNumber,
+              sections: [...currentPageSections],
+              totalHeight: currentPageHeight
+            });
+            
+            currentPageSections = [];
+            currentPageHeight = 0;
+            pageNumber++;
+            console.log(`📄 Started page ${pageNumber} for: ${section.title}`);
+          }
+          
+          // Add section to current page
+          currentPageSections.push(section);
+          currentPageHeight += sectionHeight;
+          
+          console.log(`   ✅ Added "${section.title}" to page ${pageNumber} (${currentPageHeight.toFixed(1)}mm total)`);
+        }
+        
+        // Add the last page
+        if (currentPageSections.length > 0) {
+          pageGroups.push({
+            pageNumber: pageNumber,
+            sections: [...currentPageSections],
+            totalHeight: currentPageHeight
+          });
+        }
+        
+        console.log(`\n📚 Final page layout:`);
+        pageGroups.forEach((page, index) => {
+          const sectionTitles = page.sections.map(s => s.title).join(', ');
+          console.log(`Page ${page.pageNumber}: ${page.totalHeight.toFixed(1)}mm - [${sectionTitles}]`);
+        });
+        
+        downloadBtn.innerHTML = '⏳ Generating PDF pages...';
+        
+        // Generate PDF pages
+        for (let pageIndex = 0; pageIndex < pageGroups.length; pageIndex++) {
+          const pageData = pageGroups[pageIndex];
+          
+          if (pageIndex > 0) {
+            pdf.addPage();
+          }
+          
+          downloadBtn.innerHTML = `⏳ Rendering page ${pageIndex + 1}/${pageGroups.length}...`;
+          
+          // Create page container
+          const pageContainer = document.createElement('div');
+          pageContainer.className = 'form-container pdf-optimized';
+          pageContainer.style.cssText = `
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 595px;
+            max-width: 595px;
+            background: white;
+            padding: 28px 20px 56px;
+            font-family: DM Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;
+            box-sizing: border-box;
+          `;
+          
+          // Add all sections for this page
+          pageData.sections.forEach(sectionInfo => {
+            const clonedElement = sectionInfo.element.cloneNode(true);
+            pageContainer.appendChild(clonedElement);
+          });
+          
+          document.body.appendChild(pageContainer);
+          
+          try {
+            // Capture this page
+            const canvas = await window.html2canvas(pageContainer, {
+              scale: 2,
+              useCORS: true,
+              allowTaint: true,
+              backgroundColor: '#ffffff',
+              width: pageContainer.scrollWidth,
+              height: pageContainer.scrollHeight,
+              logging: false
+            });
+            
+            // Add to PDF
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = USABLE_WIDTH_MM;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            
+            pdf.addImage(imgData, 'PNG', MARGIN_MM, MARGIN_MM, imgWidth, imgHeight);
+            
+            console.log(`✅ Page ${pageIndex + 1} captured: ${imgWidth}x${imgHeight.toFixed(1)}mm`);
+            
+          } catch (error) {
+            console.error(`❌ Failed to capture page ${pageIndex + 1}:`, error);
+          } finally {
+            // Clean up
+            document.body.removeChild(pageContainer);
+          }
+          
+          // Small delay
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        console.log(`\n🎉 Section-based PDF generation complete!`);
+        return pageGroups.length;
       }
     </script>
   </body>

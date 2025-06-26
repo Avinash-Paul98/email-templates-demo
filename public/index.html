@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Tiro+Bangla::wght@400;800&amp;family=Abhaya+Libre:wght@400;800&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=DM+Sans:wght@400;500;600;700&family=Tiro+Bangla::wght@400;800&family=Abhaya+Libre:wght@400;800&display=swap"
       rel="stylesheet"
       type="text/css"
     />
-    <title>Patient Consent Form - Converter</title>
+    <title>Patient Consent Form - PDF Generator</title>
     <style>
       * {
         margin: 0;
@@ -67,140 +67,74 @@
 
       .content {
         padding: 40px 30px;
-      }
-
-      .workflow-steps {
-        margin-bottom: 40px;
-      }
-
-      .workflow-steps h2 {
-        color: #93763c;
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 20px;
         text-align: center;
       }
 
-      .step {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-        padding: 15px;
-        background: #fafaf9;
-        border-radius: 10px;
-        border-left: 4px solid #93763c;
+      .description {
+        margin-bottom: 30px;
+        color: #555;
+        line-height: 1.6;
       }
 
-      .step-number {
-        background: #93763c;
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .features {
+        margin-bottom: 40px;
+        text-align: left;
+      }
+
+      .features h3 {
+        color: #93763c;
+        font-size: 18px;
         font-weight: 600;
-        margin-right: 15px;
-        flex-shrink: 0;
+        margin-bottom: 15px;
+        text-align: center;
       }
 
-              .step-text {
-          color: #444;
-          font-size: 14px;
-          line-height: 1.5;
-        }
-
-        .step-text code {
-          background: #f0f0f0;
-          padding: 2px 6px;
-          border-radius: 4px;
-          font-family: 'Courier New', monospace;
-          font-size: 12px;
-        }
-
-      .buttons-container {
+      .feature {
         display: flex;
-        flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        margin-bottom: 12px;
+        padding: 10px;
+        background: #fafaf9;
+        border-radius: 8px;
+      }
+
+      .feature-icon {
+        margin-right: 12px;
+        font-size: 18px;
+      }
+
+      .feature-text {
+        color: #444;
+        font-size: 14px;
       }
 
       .btn {
-        padding: 16px 24px;
+        padding: 18px 32px;
         border: none;
-        border-radius: 10px;
-        font-size: 16px;
+        border-radius: 12px;
+        font-size: 18px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
         text-decoration: none;
-        text-align: center;
         display: inline-block;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .btn-primary {
         background: linear-gradient(135deg, #93763c 0%, #7a6233 100%);
         color: white;
-        box-shadow: 0 4px 15px rgba(147, 118, 60, 0.3);
+        box-shadow: 0 6px 20px rgba(147, 118, 60, 0.3);
       }
 
-      .btn-primary:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(147, 118, 60, 0.4);
-      }
-
-      .btn-secondary {
-        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-        color: white;
-        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-      }
-
-      .btn-secondary:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(147, 118, 60, 0.4);
       }
 
       .btn:active {
-        transform: translateY(0);
+        transform: translateY(-1px);
       }
 
       .btn .icon {
-        margin-right: 10px;
-        font-size: 18px;
-      }
-
-      .status-message {
-        margin-top: 20px;
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        font-weight: 500;
-        display: none;
-      }
-
-      .status-success {
-        background: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-      }
-
-      .status-error {
-        background: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-      }
-
-      .status-info {
-        background: #d1ecf1;
-        color: #0c5460;
-        border: 1px solid #bee5eb;
+        margin-right: 12px;
+        font-size: 20px;
       }
 
       @media (max-width: 768px) {
@@ -216,30 +150,10 @@
           padding: 30px 20px;
         }
 
-        .step {
-          flex-direction: column;
-          text-align: center;
+        .btn {
+          padding: 16px 24px;
+          font-size: 16px;
         }
-
-        .step-number {
-          margin-right: 0;
-          margin-bottom: 10px;
-        }
-      }
-
-      .loading {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(255,255,255,.3);
-        border-radius: 50%;
-        border-top-color: #fff;
-        animation: spin 1s ease-in-out infinite;
-        margin-right: 10px;
-      }
-
-      @keyframes spin {
-        to { transform: rotate(360deg); }
       }
     </style>
   </head>
@@ -248,138 +162,40 @@
     <div class="container">
       <div class="header">
         <h1>Patient Consent Form</h1>
-        <p>HTML to EJS Converter & PDF Generator</p>
+        <p>Smart PDF Generator with Dynamic Data</p>
         <img src="leh-logo.png" alt="Medical facility logo" class="logo" />
       </div>
 
       <div class="content">
-        <div class="workflow-steps">
-          <h2>Conversion Workflow</h2>
-          <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-text">
-              <strong>HTML Source:</strong> Your custom HTML layout is saved as <code>form-template.html</code> - you can edit this file to modify the PDF layout.
-            </div>
+        <div class="description">
+          <p>Generate professional patient consent forms with dynamic data and intelligent PDF formatting that respects your content structure.</p>
+        </div>
+
+        <div class="features">
+          <h3>✨ Smart PDF Features</h3>
+          <div class="feature">
+            <span class="feature-icon">🧠</span>
+            <span class="feature-text">DOM-aware page breaks - no content splitting</span>
           </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-text">
-              <strong>HTML to EJS Conversion:</strong> Click to automatically convert the HTML to EJS with dynamic patient data variables.
-            </div>
+          <div class="feature">
+            <span class="feature-icon">📝</span>
+            <span class="feature-text">Dynamic patient data from server</span>
           </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-text">
-              <strong>PDF Generation:</strong> Open the dynamic EJS form and generate/download PDF with patient data.
-            </div>
+          <div class="feature">
+            <span class="feature-icon">🎯</span>
+            <span class="feature-text">Multiple PDF generation methods</span>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🔧</span>
+            <span class="feature-text">Optimized spacing and professional layout</span>
           </div>
         </div>
 
-        <div class="buttons-container">
-          <a href="/form-template" target="_blank" class="btn btn-primary" style="text-decoration: none;">
-            <span class="icon">👁️</span>
-            View HTML Template
-          </a>
-
-          <button class="btn btn-primary" id="convertToEJS" onclick="convertToEJS()">
-            <span class="icon">🔄</span>
-            Convert HTML to EJS
-          </button>
-
-          <button class="btn btn-secondary" id="downloadPDF" onclick="downloadPDF()" disabled>
-            <span class="icon">📄</span>
-            Open EJS & Download PDF
-          </button>
-        </div>
-
-        <div class="status-message" id="statusMessage"></div>
+        <a href="/consent-form" class="btn" target="_blank">
+          <span class="icon">📄</span>
+          Open Consent Form & Generate PDF
+        </a>
       </div>
     </div>
-
-    <script>
-      let ejsConverted = false;
-
-      function showStatus(message, type = 'info') {
-        const statusElement = document.getElementById('statusMessage');
-        statusElement.textContent = message;
-        statusElement.className = `status-message status-${type}`;
-        statusElement.style.display = 'block';
-        
-        if (type === 'success') {
-          setTimeout(() => {
-            statusElement.style.display = 'none';
-          }, 5000);
-        }
-      }
-
-              function setButtonLoading(buttonId, loading = true) {
-          const button = document.getElementById(buttonId);
-          if (loading) {
-            button.innerHTML = '<span class="loading"></span>Processing...';
-            button.disabled = true;
-          } else {
-            if (buttonId === 'convertToEJS') {
-              button.innerHTML = '<span class="icon">✅</span>HTML to EJS (Completed)';
-            } else {
-              button.innerHTML = '<span class="icon">📄</span>Open EJS & Download PDF';
-              button.disabled = false;
-            }
-          }
-        }
-
-      async function convertToEJS() {
-        try {
-          setButtonLoading('convertToEJS', true);
-          showStatus('Converting HTML to EJS template...', 'info');
-
-          const response = await fetch('/convert-to-ejs', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-
-          if (response.ok) {
-            const result = await response.json();
-            ejsConverted = true;
-            setButtonLoading('convertToEJS', false);
-            document.getElementById('downloadPDF').disabled = false;
-            showStatus('✅ HTML successfully converted to EJS template! You can now download the PDF.', 'success');
-          } else {
-            throw new Error('Conversion failed');
-          }
-        } catch (error) {
-          showStatus('❌ Error converting HTML to EJS. Please try again.', 'error');
-          setButtonLoading('convertToEJS', false);
-          document.getElementById('convertToEJS').innerHTML = '<span class="icon">🔄</span>Step 1: Convert HTML to EJS';
-        }
-      }
-
-      async function downloadPDF() {
-        if (!ejsConverted) {
-          showStatus('⚠️ Please complete Step 1 first (Convert HTML to EJS)', 'error');
-          return;
-        }
-
-        try {
-          setButtonLoading('downloadPDF', true);
-          showStatus('Generating PDF from EJS template...', 'info');
-
-          // Open the EJS form in a new window for PDF generation
-          const newWindow = window.open('/consent-form', '_blank', 'width=800,height=1000');
-          
-          if (newWindow) {
-            showStatus('✅ EJS form opened in new window. Click the "Download PDF" button in the new window.', 'success');
-          } else {
-            showStatus('❌ Please allow popups and try again.', 'error');
-          }
-          
-          setButtonLoading('downloadPDF', false);
-        } catch (error) {
-          showStatus('❌ Error opening EJS form. Please try again.', 'error');
-          setButtonLoading('downloadPDF', false);
-        }
-      }
-    </script>
   </body>
 </html>
