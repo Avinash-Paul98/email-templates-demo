@@ -832,7 +832,7 @@
             </div>
             <div class="detail-row">
               <div class="detail-label">Date Of Birth</div>
-              <div class="detail-value"><%= data.formFields.basicDetails.dateOfBirth %></div>
+              <div class="detail-value"><%= new Date(data.formFields.basicDetails.dateOfBirth).toLocaleDateString() %></div>
             </div>
             <div class="detail-row">
               <div class="detail-label">Gender</div>
@@ -1046,21 +1046,21 @@
                 <div class="question-label">Do You Smoke?</div>
                 <div class="question-answer flexible"><%= data.formFields.medicalDetails.lifestyle.doSmoke %></div>
               </div>
-              <% if (data.formFields.medicalDetails.lifestyle.smokeAmount || data.formFields.medicalDetails.lifestyle.smokePeriod) { %>
+              <% if (formFields.medicalDetails.lifestyle.smokeAmount || formFields.medicalDetails.lifestyle.smokePeriod) { %>
               <div class="text-area">
-                Amount: <%= data.formFields.medicalDetails.lifestyle.smokeAmount || 'N/A' %> | 
-                Period: <%= data.formFields.medicalDetails.lifestyle.smokePeriod || 'N/A' %>
+                Amount: <%= formFields.medicalDetails.lifestyle.smokeAmount || 'N/A' %> | 
+                Period: <%= formFields.medicalDetails.lifestyle.smokePeriod || 'N/A' %>
               </div>
               <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Do you drink alcohol?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.lifestyle.drinkAlcohol %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.lifestyle.drinkAlcohol %></div>
               </div>
-              <% if (data.formFields.medicalDetails.lifestyle.alcoholDetails) { %>
+              <% if (formFields.medicalDetails.lifestyle.alcoholDetails) { %>
               <div class="text-area">
-                <%= data.formFields.medicalDetails.lifestyle.alcoholDetails %>
+                <%= formFields.medicalDetails.lifestyle.alcoholDetails %>
               </div>
               <% } %>
             </div>
@@ -1074,55 +1074,55 @@
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Do you have any problems with your periods?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.femalePatients.periodProblems %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.femalePatients.periodProblems %></div>
               </div>
-              <% if (data.formFields.medicalDetails.femalePatients.periodProblemsDetails) { %>
+              <% if (formFields.medicalDetails.femalePatients.periodProblemsDetails) { %>
               <div class="text-area">
-                <%= data.formFields.medicalDetails.femalePatients.periodProblemsDetails %>
+                <%= formFields.medicalDetails.femalePatients.periodProblemsDetails %>
               </div>
               <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Could you be pregnant?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.femalePatients.couldBePregnant %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.femalePatients.couldBePregnant %></div>
               </div>
-              <% if (data.formFields.medicalDetails.femalePatients.pregnancyDetails) { %>
+              <% if (formFields.medicalDetails.femalePatients.pregnancyDetails) { %>
               <div class="text-area" style="line-height: 1.25;">
-                <%= data.formFields.medicalDetails.femalePatients.pregnancyDetails %>
+                <%= formFields.medicalDetails.femalePatients.pregnancyDetails %>
               </div>
               <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Any breast problems, for example lumps?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.femalePatients.breastProblems %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.femalePatients.breastProblems %></div>
               </div>
-              <% if (data.formFields.medicalDetails.femalePatients.breastProblemsDetails) { %>
+              <% if (formFields.medicalDetails.femalePatients.breastProblemsDetails) { %>
               <div class="text-area">
-                <%= data.formFields.medicalDetails.femalePatients.breastProblemsDetails %>
+                <%= formFields.medicalDetails.femalePatients.breastProblemsDetails %>
               </div>
               <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Have you had a mammogram (inc. date)?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.femalePatients.hadMammogram %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.femalePatients.hadMammogram %></div>
               </div>
-              <% if (data.formFields.medicalDetails.femalePatients.mammogramDetails) { %>
+              <% if (formFields.medicalDetails.femalePatients.mammogramDetails) { %>
               <div class="text-area">
-                <%= data.formFields.medicalDetails.femalePatients.mammogramDetails %>
+                <%= formFields.medicalDetails.femalePatients.mammogramDetails %>
               </div>
               <% } %>
             </div>
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Are you require / use contraception?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.femalePatients.requireContraception %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.femalePatients.requireContraception %></div>
               </div>
-              <% if (data.formFields.medicalDetails.femalePatients.contraceptionDetails) { %>
+              <% if (formFields.medicalDetails.femalePatients.contraceptionDetails) { %>
               <div class="text-area">
-                <%= data.formFields.medicalDetails.femalePatients.contraceptionDetails %>
+                <%= formFields.medicalDetails.femalePatients.contraceptionDetails %>
               </div>
               <% } %>
             </div>
@@ -1135,7 +1135,7 @@
             <div class="question-row">
               <div class="question-content">
                 <div class="question-label">Do you require a chaperone for this consultation?</div>
-                <div class="question-answer"><%= data.formFields.medicalDetails.femalePatients.requireChaperone %></div>
+                <div class="question-answer"><%= formFields.medicalDetails.femalePatients.requireChaperone %></div>
               </div>
             </div>
           </div>
@@ -1176,7 +1176,7 @@
                 <div class="final-detail-label">
                   <div>Name</div>
                 </div>
-                <div class="final-detail-value"><%= data.formFields.agreement.signatureName %></div>
+                <div class="final-detail-value"><%= formFields.agreement.signatureName %></div>
               </div>
             </div>
             <div class="final-detail-row">
@@ -1184,7 +1184,7 @@
                 <div class="final-detail-label">
                   <div>Date</div>
                 </div>
-                <div class="final-detail-value nowrap"><%= data.formFields.agreement.signatureDate %></div>
+                <div class="final-detail-value nowrap"><%= new Date(formFields.agreement.signatureDate).toLocaleDateString() %></div>
               </div>
             </div>
             <div class="final-detail-row">
@@ -1192,7 +1192,7 @@
                 <div class="final-detail-label">
                   <div>If you are not the patient, please state relationship to the patient</div>
                 </div>
-                <div class="final-detail-value"><%= data.formFields.agreement.patientRelation %></div>
+                <div class="final-detail-value"><%= formFields.agreement.patientRelation %></div>
               </div>
             </div>
           </div>
